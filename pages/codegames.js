@@ -30,7 +30,7 @@ export default function CodeGames() {
 
   React.useEffect(() => {
     setModalIsVisible(true);
-  }, [won, failed]);
+  }, []);
 
   const difficultyLevels = [
     { value: "Easy", label: "Easy" },
@@ -287,6 +287,7 @@ export default function CodeGames() {
                     } else {
                       setWon(true);
                     }
+                    setModalIsVisible(true);
                   }}
                 />
               </View>
