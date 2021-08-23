@@ -1,157 +1,297 @@
-import { jsx, css } from "@emotion/react";
+// this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { jsx, css, Global } from "@emotion/react";
 import Head from "next/head";
 import Link from "next/link";
 import Editor from "@monaco-editor/react";
 import React from "react";
+import Select from "react-select";
+import Toggle from "react-toggle";
+import {
+  Button,
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+} from "react-native-web";
+import MyButton from "components/MyButton";
 
-export default function Home() {
+export default function CodeGames() {
+  const [loading, setLoading] = React.useState(true);
   const [language, setLanguage] = React.useState("javascript");
-  const languageOptions = [
-    "abap",
-    "apex",
-    "azcli",
-    "bat",
-    "bicep",
-    "cameligo",
-    "clojure",
-    "coffee",
-    "cpp",
-    "csharp",
-    "csp",
-    "css",
-    "dart",
-    "dockerfile",
-    "ecl",
-    "elixir",
-    "fillers",
-    "fsharp",
-    "go",
-    "graphql",
-    "handlebars",
-    "hcl",
-    "html",
-    "ini",
-    "java",
-    "javascript",
-    "julia",
-    "kotlin",
-    "less",
-    "lexon",
-    "liquid",
-    "lua",
-    "m3",
-    "markdown",
-    "mips",
-    "msdax",
-    "mysql",
-    "objective-c",
-    "pascal",
-    "pascaligo",
-    "perl",
-    "pgsql",
-    "php",
-    "postiats",
-    "powerquery",
-    "powershell",
-    "pug",
-    "python",
-    "qsharp",
-    "r",
-    "razor",
-    "redis",
-    "redshift",
-    "restucturedtext",
-    "ruby",
-    "rust",
-    "sb",
-    "scala",
-    "scheme",
-    "scss",
-    "shell",
-    "solidity",
-    "sophia",
-    "sparql",
-    "sql",
-    "st",
-    "swift",
-    "systemverilog",
-    "tcl",
-    "test",
-    "twig",
-    "typescript",
-    "vb",
-    "xml",
-    "yaml",
+  const [theme, setTheme] = React.useState("light");
+  const [difficulty, setDifficulty] = React.useState("Medium");
+
+  React.useState(() => {
+    loadData();
+  }, []);
+
+  async function loadData() {
+    try {
+      setLoading(true);
+      // load data from somewhere
+    } catch (error) {
+      console.log("error is " + error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const difficultyLevels = [
+    { value: "Easy", label: "Easy" },
+    { value: "Medium", label: "Medium" },
+    { value: "Hard", label: "Hard" },
   ];
-  const style = css`
-    color: hotpink;
-  `;
+
+  const themes = [
+    { value: "light", label: "Light" },
+    { value: "vs-dark", label: "Dark" },
+  ];
+
+  const languageOptions = [
+    { value: "abap", label: "abab" },
+    { value: "aes", label: "aes" },
+    { value: "apex", label: "apex" },
+    { value: "azcli", label: "azcli" },
+    { value: "bat", label: "bat" },
+    { value: "bicep", label: "bicep" },
+    { value: "c", label: "c" },
+    { value: "cameligo", label: "cameligo" },
+    { value: "clojure", label: "clojure" },
+    { value: "coffeescript", label: "coffeescript" },
+    { value: "cpp", label: "cpp" },
+    { value: "csharp", label: "csharp" },
+    { value: "csp", label: "csp" },
+    { value: "css", label: "css" },
+    { value: "dart", label: "dart" },
+    { value: "dockerfile", label: "dockerfile" },
+    { value: "ecl", label: "ecl" },
+    { value: "elixir", label: "elixer" },
+    { value: "fsharp", label: "fsharp" },
+    { value: "go", label: "go" },
+    { value: "graphql", label: "graphql" },
+    { value: "handlebars", label: "handlebars" },
+    { value: "hcl", label: "hcl" },
+    { value: "html", label: "html" },
+    { value: "ini", label: "ini" },
+    { value: "java", label: "java" },
+    { value: "javascript", label: "javascript" },
+    { value: "json", label: "json" },
+    { value: "julia", label: "julia" },
+    { value: "kotlin", label: "kotlin" },
+    { value: "less", label: "less" },
+    { value: "lexon", label: "lexon" },
+    { value: "liquid", label: "liquid" },
+    { value: "lua", label: "lua" },
+    { value: "m3", label: "m3" },
+    { value: "markdown", label: "markdown" },
+    { value: "mips", label: "mips" },
+    { value: "msdax", label: "msdax" },
+    { value: "mysql", label: "mysql" },
+    { value: "objective-c", label: "objective-c" },
+    { value: "pascal", label: "pascal" },
+    { value: "pascaligo", label: "pascaligo" },
+    { value: "perl", label: "perl" },
+    { value: "pgsql", label: "pgsql" },
+    { value: "php", label: "php" },
+    { value: "plaintext", label: "plaintext" },
+    { value: "postiats", label: "postiats" },
+    { value: "powerquery", label: "powerquery" },
+    { value: "powershell", label: "powershell" },
+    { value: "pug", label: "pug" },
+    { value: "python", label: "python" },
+    { value: "qsharp", label: "qsharp" },
+    { value: "r", label: "r" },
+    { value: "razor", label: "razor" },
+    { value: "redis", label: "redis" },
+    { value: "redshift", label: "redshift" },
+    { value: "restucturedtext", label: "restucturedtext" },
+    { value: "ruby", label: "ruby" },
+    { value: "rust", label: "rust" },
+    { value: "sb", label: "sb" },
+    { value: "scala", label: "scala" },
+    { value: "scheme", label: "scheme" },
+    { value: "scss", label: "scss" },
+    { value: "shell", label: "shell" },
+    { value: "sol", label: "sol" },
+    { value: "solidity", label: "solidity" },
+    { value: "sophia", label: "sophia" },
+    { value: "sparql", label: "sparql" },
+    { value: "sql", label: "sql" },
+    { value: "st", label: "st" },
+    { value: "swift", label: "swift" },
+    { value: "systemverilog", label: "systemverilog" },
+    { value: "tcl", label: "tcl" },
+    { value: "twig", label: "twig" },
+    { value: "typescript", label: "typescript" },
+    { value: "vb", label: "vb" },
+    { value: "verilog", label: "verilog" },
+    { value: "xml", label: "xml" },
+    { value: "yaml", label: "yaml" },
+  ];
+
+  console.log(language);
 
   return (
-    <div>
-      <div css={{ color: "red" }}>
-        <p>feeffiefiififii</p>
-      </div>
-      <div className="container">
-        <Head>
-          <title>Create Next App</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-
-        <main>
-          <h1 css={style}>
-            Read{" "}
-            <Link href="/posts/first-post">
-              <a>this page!</a>
-            </Link>
-          </h1>
-
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        backgroundColor: "green",
+        flexDirection: "column",
+      }}
+    >
+      <View
+        style={{
+          flexDirection: "row",
+          backgroundColor: "yellow",
+          height: 50,
+          marginTop: 0,
+        }}
+      >
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <Link href="/home">
+            <a>Home</a>
+          </Link>
+        </View>
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <Link href="/rankings">
+            <a>Rankings</a>
+          </Link>
+        </View>
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <Link href="/codegames">
+            <a>Code Games</a>
+          </Link>
+        </View>
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <Link href="/login">
+            <a>Login</a>
+          </Link>
+        </View>
+      </View>
+      <View style={{ flex: 1, flexDirection: "row" }}>
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: "red",
+          }}
+        >
+          <View style={{ flex: 1, margin: "5%" }}>
+            <View style={{ flex: 1 }}>
+              <Text style={{ fontSize: 30, fontWeight: "bold" }}>Problem</Text>
+              <ScrollView>
+                <Text>
+                  ng it over 2000 years old. Richard McClintock, a Latin
+                  professor at Hampden-Sydney College in Virginia, looked up one
+                  of the more obscure Latin words, consectetur, from a Lorem
+                  Ipsum passage, and going through the cites of the word in
+                  classical literature, discovered the undoubtable source. Lorem
+                  Ipsum comes from sections 1.10.32 and 1.10.3
+                </Text>
+              </ScrollView>
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={{ fontSize: 30, fontWeight: "bold" }}>Input</Text>
+              <ScrollView>
+                <Text>
+                  ng it over 2000 years old. Richard McClintock, a Latin
+                  professor at Hampden-Sydney College in Virginia, looked up one
+                  of the more obscure Latin words, consectetur, from a Lorem
+                  Ipsum passage, and going through the cites of the word in
+                  classical literature, discovered the undoubtable source. Lorem
+                  Ipsum comes from sections 1.10.32 and 1.10.3
+                </Text>
+              </ScrollView>
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={{ fontSize: 30, fontWeight: "bold" }}>
+                Required Output
+              </Text>
+              <ScrollView>
+                <Text>
+                  ng it over 2000 years old. Richard McClintock, a Latin
+                  professor at Hampden-Sydney College in Virginia, looked up one
+                  of the more obscure Latin words, consectetur, from a Lorem
+                  Ipsum passage, and going through the cites of the word in
+                  classical literature, discovered the undoubtable source. Lorem
+                  Ipsum comes from sections 1.10.32 and 1.10.3
+                </Text>
+              </ScrollView>
+            </View>
+            <View style={{ flex: 1 }}>
+              <View>
+                <label for="difficulty">difficulty</label>
+                <select
+                  id="difficulty"
+                  onChange={(event) => {
+                    setDifficulty(event.target.value);
+                  }}
+                  value={difficulty}
+                >
+                  {difficultyLevels.map((difficulty) => {
+                    return (
+                      <option value={difficulty.value}>
+                        {difficulty.label}
+                      </option>
+                    );
+                  })}
+                </select>
+              </View>
+              <View>
+                <label for="language">Language</label>
+                <select
+                  id="language"
+                  onChange={(event) => {
+                    setLanguage(event.target.value);
+                  }}
+                  value={language}
+                >
+                  {languageOptions.map((language) => {
+                    return (
+                      <option value={language.value}>{language.label}</option>
+                    );
+                  })}
+                </select>
+              </View>
+              <View>
+                <label for="theme">Theme</label>
+                <select
+                  id="theme"
+                  onChange={(event) => {
+                    setTheme(event.target.value);
+                  }}
+                  value={theme}
+                >
+                  {themes.map((theme) => {
+                    return <option value={theme.value}>{theme.label}</option>;
+                  })}
+                </select>
+              </View>
+              <View>
+                <MyButton title="Play" onPress={() => {}} />
+              </View>
+            </View>
+          </View>
+        </View>
+        <View style={{ flex: 4, backgroundColor: "blue" }}>
           <Editor
-            height="90vh"
+            defaultValue="// Place your code here"
             language={language}
-            defaultValue="// some comment"
+            theme={theme}
           />
-          <div className="grid">
-            <a href="https://nextjs.org/docs" className="card">
-              <h3>Documentation &rarr;</h3>
-              <p>Find in-depth information about Next.js features and API.</p>
-            </a>
-
-            <a href="https://nextjs.org/learn" className="card">
-              <h3>Learn &rarr;</h3>
-              <p>Learn about Next.js in an interactive course with quizzes!</p>
-            </a>
-
-            <a
-              href="https://github.com/vercel/next.js/tree/master/examples"
-              className="card"
-            >
-              <h3>Examples &rarr;</h3>
-              <p>Discover and deploy boilerplate example Next.js projects.</p>
-            </a>
-
-            <a
-              href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              className="card"
-            >
-              <h3>Deploy &rarr;</h3>
-              <p>
-                Instantly deploy your Next.js site to a public URL with Vercel.
-              </p>
-            </a>
-          </div>
-        </main>
-
-        <footer>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Powered by <img src="/vercel.svg" alt="Vercel" className="logo" />
-          </a>
-        </footer>
-      </div>
-    </div>
+        </View>
+      </View>
+    </View>
   );
 }
