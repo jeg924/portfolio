@@ -4,16 +4,21 @@
 import { jsx, css, Global } from "@emotion/react";
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
-import profilePic from "../public/images/profile.jpg";
 import Editor from "@monaco-editor/react";
 import React from "react";
 import Select from "react-select";
 import Toggle from "react-toggle";
-import { Button, StyleSheet, Text, View, ScrollView } from "react-native-web";
+import {
+  Button,
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+} from "react-native-web";
 import MyButton from "components/MyButton";
 
-export default function Home() {
+export default function Login() {
   return (
     <View
       style={{
@@ -59,21 +64,7 @@ export default function Home() {
           </Link>
         </View>
       </View>
-      <View>
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Image
-            width={100}
-            height={100}
-            src={profilePic}
-            alt="Picture of the author"
-          />
-          <Link href="/codegames">
-            <a>Code Games</a>
-          </Link>
-        </View>
-      </View>
+      <View></View>
     </View>
   );
 }
