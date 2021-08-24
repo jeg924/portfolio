@@ -10,15 +10,54 @@ import Select from "react-select";
 import Toggle from "react-toggle";
 import {
   Button,
-  Image,
   StyleSheet,
   Text,
   View,
   ScrollView,
+  FlatList,
 } from "react-native-web";
 import MyButton from "components/MyButton";
+import Image from "next/image";
+import profilePic from "../public/images/profile.jpg";
+import country from "../public/images/americanFlag.jpg";
 
 export default function Rankings() {
+  const [rankingsData, setRankingsData] = React.useState(null);
+
+  React.useEffect(() => {
+    loadData();
+  }, []);
+
+  async function loadData() {
+    let data = [
+      {
+        rank: 1,
+        profilePicture: profilePic,
+        name: "Bob",
+        school: "Bob Jones University",
+        country: country,
+        points: 20345,
+      },
+      {
+        rank: 2,
+        profilePicture: profilePic,
+        name: "Jim",
+        school: "Bob Jones University",
+        country: country,
+        points: 20340,
+      },
+      {
+        rank: 3,
+        profilePicture: profilePic,
+        name: "Kid",
+        school: "Bob Jones University",
+        country: country,
+        points: 20320,
+      },
+    ];
+    setRankingsData(data);
+  }
+
   return (
     <View
       style={{
@@ -64,7 +103,40 @@ export default function Rankings() {
           </Link>
         </View>
       </View>
-      <View></View>
+      <ScrollView style={{ backgroundColor: "red" }}>
+        {rankingsData?.map((item) => {
+          return (
+            <View
+              style={{
+                flexDirection: "row",
+                height: 60,
+                alignItems: "center",
+                backgroundColor: "cyan",
+                margin: 5,
+              }}
+            >
+              <View style={{ flex: 0.5, alignItems: "center" }}>
+                <Text>{item.rank}</Text>
+              </View>
+              <View style={{ flex: 0.5, alignItems: "center" }}>
+                <Image src={item.profilePicture} width={50} height={50} />
+              </View>
+              <View style={{ flex: 3 }}>
+                <Text>{item.name}</Text>
+              </View>
+              <View style={{ flex: 2, alignItems: "center" }}>
+                <Text>{item.school}</Text>
+              </View>
+              <View style={{ flex: 1, alignItems: "center" }}>
+                <Image src={item.country} width={50} height={50} />
+              </View>
+              <View style={{ flex: 1, alignItems: "center" }}>
+                <Text>{item.points}</Text>
+              </View>
+            </View>
+          );
+        })}
+      </ScrollView>
     </View>
   );
 }
