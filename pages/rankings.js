@@ -17,6 +17,7 @@ import {
   FlatList,
 } from "react-native-web";
 import MyButton from "components/MyButton";
+import NavBar from "components/NavBar";
 import Image from "next/image";
 import profilePic from "../public/images/profile.jpg";
 import country from "../public/images/americanFlag.jpg";
@@ -66,43 +67,7 @@ export default function Rankings() {
         flexDirection: "column",
       }}
     >
-      <View
-        style={{
-          flexDirection: "row",
-          backgroundColor: "yellow",
-          height: 50,
-          marginTop: 0,
-        }}
-      >
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Link href="/">
-            <a>Home</a>
-          </Link>
-        </View>
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Link href="/rankings">
-            <a>Rankings</a>
-          </Link>
-        </View>
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Link href="/codegames">
-            <a>Code Games</a>
-          </Link>
-        </View>
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Link href="/login">
-            <a>Login</a>
-          </Link>
-        </View>
-      </View>
+      <NavBar />
       <ScrollView style={{ backgroundColor: "red" }}>
         {rankingsData?.map((item) => {
           return (

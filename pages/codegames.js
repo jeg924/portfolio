@@ -18,6 +18,7 @@ import {
   Modal,
 } from "react-native-web";
 import MyButton from "components/MyButton";
+import NavBar from "components/NavBar";
 
 export default function CodeGames() {
   const [modalIsVisible, setModalIsVisible] = React.useState(false);
@@ -135,43 +136,7 @@ export default function CodeGames() {
         flexDirection: "column",
       }}
     >
-      <View
-        style={{
-          flexDirection: "row",
-          backgroundColor: "yellow",
-          height: 50,
-          marginTop: 0,
-        }}
-      >
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Link href="/">
-            <a>Home</a>
-          </Link>
-        </View>
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Link href="/rankings">
-            <a>Rankings</a>
-          </Link>
-        </View>
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Link href="/codegames">
-            <a>Code Games</a>
-          </Link>
-        </View>
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Link href="/login">
-            <a>Login</a>
-          </Link>
-        </View>
-      </View>
+      <NavBar />
       <View style={{ flex: 1, flexDirection: "row" }}>
         <View
           style={{

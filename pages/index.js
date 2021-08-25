@@ -12,6 +12,7 @@ import Select from "react-select";
 import Toggle from "react-toggle";
 import { Button, StyleSheet, Text, View, ScrollView } from "react-native-web";
 import MyButton from "components/MyButton";
+import NavBar from "components/NavBar";
 
 export default function Home() {
   return (
@@ -22,43 +23,7 @@ export default function Home() {
         flexDirection: "column",
       }}
     >
-      <View
-        style={{
-          flexDirection: "row",
-          backgroundColor: "yellow",
-          height: 50,
-          marginTop: 0,
-        }}
-      >
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Link href="/">
-            <a>Home</a>
-          </Link>
-        </View>
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Link href="/rankings">
-            <a>Rankings</a>
-          </Link>
-        </View>
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Link href="/codegames">
-            <a>Code Games</a>
-          </Link>
-        </View>
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Link href="/login">
-            <a>Login</a>
-          </Link>
-        </View>
-      </View>
+      <NavBar />
       <View>
         <View
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
