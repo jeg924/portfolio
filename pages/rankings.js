@@ -75,7 +75,7 @@ export default function Rankings() {
                 flexDirection: "row",
                 height: 60,
                 alignItems: "center",
-                margin: 5,
+                borderBottomWidth: 1,
               }}
             >
               <View style={{ flex: 0.5, alignItems: "center" }}>
