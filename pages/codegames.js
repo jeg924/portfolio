@@ -16,10 +16,12 @@ import {
   View,
   ScrollView,
   Modal,
+  TouchableOpacity,
 } from "react-native-web";
 import MyButton from "components/MyButton";
 import NavBar from "components/NavBar";
 
+// #0096FF: Bright blue
 export default function CodeGames() {
   const [modalIsVisible, setModalIsVisible] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
@@ -28,6 +30,12 @@ export default function CodeGames() {
   const [difficulty, setDifficulty] = React.useState("Medium");
   const [won, setWon] = React.useState(false);
   const [failed, setFailed] = React.useState(false);
+  const [performance, setPerformance] = React.useState(true);
+  const [performanceHovering, setPerformanceHovering] = React.useState(false);
+  const [stdout, setStdout] = React.useState(false);
+  const [stdoutHovering, setStdoutHovering] = React.useState(false);
+  const [stderr, setStderr] = React.useState(false);
+  const [stderrHovering, setStderrHovering] = React.useState(false);
 
   const difficultyLevels = [
     { value: "Easy", label: "Easy" },
@@ -122,8 +130,6 @@ export default function CodeGames() {
     { value: "yaml", label: "yaml" },
   ];
 
-  console.log(language);
-
   return (
     <View
       style={{
@@ -136,6 +142,8 @@ export default function CodeGames() {
         <View
           style={{
             flex: 1,
+            borderColor: "black",
+            borderRightWidth: 1,
           }}
         >
           <ScrollView
@@ -146,7 +154,15 @@ export default function CodeGames() {
           >
             <View style={{ flex: 1 }}>
               <Text style={{ fontSize: 30, fontWeight: "bold" }}>Problem</Text>
-              <ScrollView style={{ borderWidth: 1, borderColor: "black" }}>
+              <ScrollView
+                style={{
+                  borderWidth: 1,
+                  borderRadius: 20,
+                  borderColor: "black",
+                  backgroundColor: "white",
+                  padding: 10,
+                }}
+              >
                 <Text>
                   over 2000 years old. Richard McClintock, a Latin professor at
                   Hampden-Sydney College in Virginia, looked up one of the more
@@ -159,7 +175,15 @@ export default function CodeGames() {
             </View>
             <View style={{ flex: 1 }}>
               <Text style={{ fontSize: 30, fontWeight: "bold" }}>Input</Text>
-              <ScrollView style={{ borderWidth: 1, borderColor: "black" }}>
+              <ScrollView
+                style={{
+                  borderWidth: 1,
+                  borderRadius: 20,
+                  borderColor: "black",
+                  backgroundColor: "white",
+                  padding: 10,
+                }}
+              >
                 <Text>
                   over 2000 years old. Richard McClintock, a Latin professor at
                   Hampden-Sydney College in Virginia, looked up one of the more
@@ -174,7 +198,15 @@ export default function CodeGames() {
               <Text style={{ fontSize: 30, fontWeight: "bold" }}>
                 Restrictions
               </Text>
-              <ScrollView style={{ borderWidth: 1, borderColor: "black" }}>
+              <ScrollView
+                style={{
+                  borderWidth: 1,
+                  borderRadius: 20,
+                  borderColor: "black",
+                  backgroundColor: "white",
+                  padding: 10,
+                }}
+              >
                 <Text>
                   ng it over 2000 years old. Richard McClintock, a Latin
                   professor at Hampden-Sydney College in Virginia, looked up one
@@ -185,9 +217,14 @@ export default function CodeGames() {
                 </Text>
               </ScrollView>
             </View>
-            <View style={{ flex: 1 }}>
+            <View
+              style={{
+                flex: 0.5,
+                justifyContent: "space-around",
+              }}
+            >
               <View>
-                <label for="difficulty">difficulty</label>
+                <label for="difficulty">Difficulty</label>
                 <select
                   id="difficulty"
                   onChange={(event) => {
@@ -204,39 +241,10 @@ export default function CodeGames() {
                   })}
                 </select>
               </View>
-              <View>
-                <label for="language">Language</label>
-                <select
-                  id="language"
-                  onChange={(event) => {
-                    setLanguage(event.target.value);
-                  }}
-                  value={language}
-                >
-                  {languageOptions.map((language) => {
-                    return (
-                      <option value={language.value}>{language.label}</option>
-                    );
-                  })}
-                </select>
-              </View>
-              <View>
-                <label for="theme">Theme</label>
-                <select
-                  id="theme"
-                  onChange={(event) => {
-                    setTheme(event.target.value);
-                  }}
-                  value={theme}
-                >
-                  {themes.map((theme) => {
-                    return <option value={theme.value}>{theme.label}</option>;
-                  })}
-                </select>
-              </View>
+
               <View>
                 <MyButton
-                  title="Play"
+                  title="Build"
                   onPress={() => {
                     setWon(false);
                     setFailed(false);
@@ -253,12 +261,70 @@ export default function CodeGames() {
             </View>
           </ScrollView>
         </View>
-        <View style={{ flex: 4 }}>
-          <Editor
-            defaultValue="// Place your code here"
-            language={language}
-            theme={theme}
-          />
+        <View style={{ flex: 4, flexDirection: "column" }}>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              backgroundColor: "#0096FF",
+            }}
+          >
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <label style={{ paddingRight: 5 }} for="language">
+                Language{" "}
+              </label>
+              <select
+                id="language"
+                onChange={(event) => {
+                  setLanguage(event.target.value);
+                }}
+                value={language}
+              >
+                {languageOptions.map((language) => {
+                  return (
+                    <option value={language.value}>{language.label}</option>
+                  );
+                })}
+              </select>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <label style={{ paddingRight: 5 }} for="theme">
+                Theme{" "}
+              </label>
+              <select
+                id="theme"
+                onChange={(event) => {
+                  setTheme(event.target.value);
+                }}
+                value={theme}
+              >
+                {themes.map((theme) => {
+                  return <option value={theme.value}>{theme.label}</option>;
+                })}
+              </select>
+            </View>
+          </View>
+          <View style={{ flex: 15 }}>
+            <Editor
+              defaultValue="// Place your code here"
+              language={language}
+              theme={theme}
+            />
+          </View>
         </View>
       </View>
       <Modal
@@ -268,54 +334,190 @@ export default function CodeGames() {
         transparent
       >
         <View
-          style={{
-            flex: 1,
-            margin: "10%",
-            flexDirection: "column",
-            backgroundColor: "white",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+          style={[
+            {
+              flex: 1,
+              marginTop: "5%",
+              marginBottom: "2%",
+              marginLeft: "20%",
+              marginRight: "20%",
+              flexDirection: "column",
+              backgroundColor: "white",
+              borderRadius: 20,
+            },
+            {
+              shadowOffset: {
+                width: 10,
+                height: 10,
+              },
+              shadowOpacity: 0.1,
+              shadowRadius: 10,
+            },
+          ]}
         >
-          <Text style={{ fontSize: 30, fontWeight: "bold" }}>
-            {!won && !failed
-              ? "Problem"
-              : !won && failed
-              ? "Try again"
-              : "You win!"}
-          </Text>
-          <ScrollView style={{ borderWidth: 1, borderColor: "black" }}>
-            <Text>
-              over 2000 years old. Richard McClintock, a Latin professor at
-              Hampden-Sydney College in Virginia, looked up one of the more
-              obscure Latin words, consectetur, from a Lorem Ipsum passage, and
-              going through the cites of the word in classical literature,
-              discovered the undoubtable source. Lorem Ipsum comes from sections
-              1.10.32 and 1.10.3
-            </Text>
-          </ScrollView>
-          <View>
-            <label for="language">Language</label>
-            <select
-              id="language"
-              onChange={(event) => {
-                setLanguage(event.target.value);
-              }}
-              value={language}
-            >
-              {languageOptions.map((language) => {
-                return <option value={language.value}>{language.label}</option>;
-              })}
-            </select>
-          </View>
-          <Button
-            onPress={() => {
-              setModalIsVisible(false);
+          {" "}
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              backgroundColor: "black",
+              borderTopRadius: 50,
+              borderTopWidth: 1,
             }}
-            title={
-              !won && !failed ? "Start" : !won && failed ? "Back" : "Continue"
-            }
-          />
+          >
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <TouchableOpacity
+                onMouseEnter={() => {
+                  setPerformanceHovering(true);
+                }}
+                onMouseLeave={() => {
+                  setPerformanceHovering(false);
+                }}
+                onPress={() => {
+                  setPerformance(true);
+                  setStderr(false);
+                  setStdout(false);
+                }}
+                style={{
+                  flex: 0.8,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: performance ? "#0096FF" : "black",
+                  borderRadius: 20,
+                  width: "80%",
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    borderBottomWidth: performance ? 0 : 2,
+                    borderBottomColor: performanceHovering ? "white" : "black",
+                  }}
+                >
+                  <Text style={{ color: "white" }}>Performance</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <TouchableOpacity
+                onMouseEnter={() => {
+                  setStdoutHovering(true);
+                }}
+                onMouseLeave={() => {
+                  setStdoutHovering(false);
+                }}
+                onPress={() => {
+                  setStdout(true);
+                  setStderr(false);
+                  setPerformance(false);
+                }}
+                style={{
+                  flex: 0.8,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: stdout ? "#0096FF" : "black",
+                  borderRadius: 20,
+                  width: "80%",
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    borderBottomWidth: stdout ? 0 : 2,
+                    borderBottomColor: stdoutHovering ? "white" : "black",
+                  }}
+                >
+                  <Text style={{ color: "white" }}>Stdout</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <TouchableOpacity
+                onMouseEnter={() => {
+                  setStderrHovering(true);
+                }}
+                onMouseLeave={() => {
+                  setStderrHovering(false);
+                }}
+                onPress={() => {
+                  setStderr(true);
+                  setStdout(false);
+                  setPerformance(false);
+                }}
+                style={{
+                  flex: 0.8,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: stderr ? "#0096FF" : "black",
+                  borderRadius: 20,
+                  width: "80%",
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    borderBottomWidth: stderr ? 0 : 2,
+                    borderBottomColor: stderrHovering ? "white" : "black",
+                  }}
+                >
+                  <Text style={{ color: "white" }}>Stderr</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={{ flex: 10 }}>
+            <View style={{ flex: 1, margin: "5%" }}>
+              <ScrollView
+                style={{
+                  borderWidth: 1,
+                  borderRadius: 20,
+                  borderColor: "black",
+                  backgroundColor: "white",
+                  padding: 10,
+                }}
+              >
+                <Text>
+                  over 2000 years old. Richard McClintock, a Latin professor at
+                  Hampden-Sydney College in Virginia, looked up one of the more
+                  obscure Latin words, consectetur, from a Lorem Ipsum passage,
+                  and going through the cites of the word in classical
+                  literature, discovered the undoubtable source. Lorem Ipsum
+                  comes from sections 1.10.32 and 1.10.3
+                </Text>
+              </ScrollView>
+            </View>
+          </View>
+          <View style={{ flex: 1, flexDirection: "row" }}>
+            <View style={{ flex: 1 }}></View>
+            <View style={{ flex: 1 }}>
+              <MyButton
+                title={failed ? "Back" : "Continue"}
+                onPress={() => {
+                  // logic for winning.
+                  setModalIsVisible(false);
+                }}
+              />
+            </View>
+            <View style={{ flex: 1 }}></View>
+          </View>
         </View>
       </Modal>
     </View>
