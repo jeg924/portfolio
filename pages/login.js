@@ -24,7 +24,7 @@ import MyButton from "components/MyButton";
 import NavBar from "components/NavBar";
 
 export default function Login() {
-  const [signIn, setSignIn] = React.useState(true);
+  const [signUpHovering, setSignUpHovering] = React.useState(false);
   const [signUp, setSignUp] = React.useState(false);
 
   async function loginWithEmailAndPassword() {}
@@ -69,7 +69,7 @@ export default function Login() {
           </View>
           <View style={{ flex: 1 }}></View>
         </View>
-        <View style={{ flex: 3, flexDirection: "row" }}>
+        <View style={{ flex: 5, flexDirection: "row" }}>
           <View style={{ flex: 1 }}></View>
           <View
             style={[
@@ -77,6 +77,8 @@ export default function Login() {
                 flex: 0.8,
                 borderWidth: 1,
                 borderColor: "black",
+                borderRadius: 15,
+                backgroundColor: "black",
               },
               {
                 shadowOffset: {
@@ -96,73 +98,122 @@ export default function Login() {
                 alignItems: "center",
               }}
             >
-              <TouchableOpacity
-                onPress={() => {
-                  setSignIn(true);
-                  setSignUp(false);
-                }}
+              <Text
+                style={{ fontSize: 30, fontWeight: "bold", color: "white" }}
               >
-                <Text
-                  style={{ fontSize: 30, color: signIn ? "blue" : "black" }}
-                >
-                  Sign in
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  setSignUp(true);
-                  setSignIn(false);
-                }}
-              >
-                <Text
-                  style={{ fontSize: 30, color: signUp ? "blue" : "black" }}
-                >
-                  Sign up
-                </Text>
-              </TouchableOpacity>
+                {signUp ? "Register" : "Login"}
+              </Text>
             </View>
             <View style={{ flex: 4 }}>
               <View
                 style={{
                   flex: 1,
-                  justifyContent: "center",
-                  alignItems: "center",
                 }}
               >
-                <MdAccountCircle style={{ width: 60, height: 60 }} />
-              </View>
-              <View
-                style={{
-                  flex: 3,
-                }}
-              >
-                <View style={{ flex: 1, flexDirection: "row" }}>
+                <View style={{ flex: 0.5, flexDirection: "row" }}>
                   <View style={{ flex: 1 }}></View>
                   <View style={{ flex: 1 }}></View>
                   <View style={{ flex: 1 }}></View>
                 </View>
-                <View style={{ flex: 4, flexDirection: "row" }}>
+                <View style={{ flex: 5, flexDirection: "row" }}>
                   <View style={{ flex: 1 }}></View>
-                  <View style={{ justifyContent: "space-around" }}>
-                    <TextInput
-                      placeholder="email"
-                      style={{
-                        borderWidth: 1,
-                        padding: 6,
-                      }}
-                    />
-                    <TextInput
-                      placeholder="password"
-                      style={{
-                        borderWidth: 1,
-                        padding: 6,
-                      }}
-                    />
-                    <MyButton title="Go" onPress={() => {}} />
+                  <View style={{ flex: 2.5 }}>
+                    {signUp ? (
+                      <View style={{ flex: 1 }}>
+                        <Text style={{ color: "white", fontSize: 10 }}>
+                          Email
+                        </Text>
+                        <TextInput
+                          placeholder=" Email"
+                          style={{
+                            backgroundColor: "white",
+                            borderWidth: 1,
+                            padding: 6,
+                            borderColor: "#0096FF",
+                            borderWidth: 2,
+                            borderRadius: 20,
+                          }}
+                        />
+                      </View>
+                    ) : (
+                      <View style={{ flex: 1 }}></View>
+                    )}
+                    <View style={{ flex: 1 }}>
+                      <Text style={{ color: "white", fontSize: 10 }}>
+                        Username
+                      </Text>
+                      <TextInput
+                        placeholder=" Username"
+                        style={{
+                          backgroundColor: "white",
+                          borderWidth: 1,
+                          padding: 6,
+                          borderColor: "#0096FF",
+                          borderWidth: 2,
+                          borderRadius: 20,
+                        }}
+                      />
+                    </View>
+                    <View style={{ flex: 1 }}>
+                      <Text style={{ color: "white", fontSize: 10 }}>
+                        Password
+                      </Text>
+                      <TextInput
+                        placeholder=" Password"
+                        style={{
+                          backgroundColor: "white",
+                          borderWidth: 1,
+                          padding: 6,
+                          borderColor: "#0096FF",
+                          borderWidth: 2,
+                          borderRadius: 20,
+                        }}
+                      />
+                    </View>
+                    <View style={{ flex: 1 }}>
+                      <MyButton
+                        title={signUp ? "Register" : "Login"}
+                        onPress={() => {}}
+                      />
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          justifyContent: "space-around",
+                        }}
+                      >
+                        <Text style={{ color: "white", fontSize: 10 }}>
+                          {signUp
+                            ? "Already have an account?"
+                            : "Don't have an account yet?"}
+                        </Text>
+                        <TouchableOpacity
+                          onMouseEnter={() => {
+                            setSignUpHovering(true);
+                          }}
+                          onMouseLeave={() => {
+                            setSignUpHovering(false);
+                          }}
+                          onPress={() => {
+                            setSignUp(!signUp);
+                          }}
+                        >
+                          <Text
+                            style={{
+                              color: "#0096FF",
+                              fontSize: 10,
+                              borderBottomWidth: signUpHovering ? 2 : 0,
+                              borderBottomColor: "white",
+                            }}
+                          >
+                            {signUp ? "Sign In" : "Sign up"}
+                          </Text>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
                   </View>
                   <View style={{ flex: 1 }}></View>
                 </View>
-                <View style={{ flex: 1, flexDirection: "row" }}>
+                <View style={{ flex: 0.5, flexDirection: "row" }}>
                   <View style={{ flex: 1 }}></View>
                   <View style={{ flex: 1 }}></View>
                   <View style={{ flex: 1 }}></View>

@@ -253,7 +253,7 @@ export default function CodeGames() {
             </View>
           </ScrollView>
         </View>
-        <View style={{ flex: 4, backgroundColor: "blue" }}>
+        <View style={{ flex: 4 }}>
           <Editor
             defaultValue="// Place your code here"
             language={language}
