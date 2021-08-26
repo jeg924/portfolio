@@ -132,7 +132,6 @@ export default function CodeGames() {
     <View
       style={{
         flex: 1,
-        backgroundColor: "green",
         flexDirection: "column",
       }}
     >
@@ -141,7 +140,6 @@ export default function CodeGames() {
         <View
           style={{
             flex: 1,
-            backgroundColor: "red",
           }}
         >
           <ScrollView

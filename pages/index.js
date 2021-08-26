@@ -19,7 +19,6 @@ export default function Home() {
     <View
       style={{
         flex: 1,
-        backgroundColor: "green",
         flexDirection: "column",
       }}
     >

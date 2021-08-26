@@ -63,12 +63,11 @@ export default function Rankings() {
     <View
       style={{
         flex: 1,
-        backgroundColor: "green",
         flexDirection: "column",
       }}
     >
       <NavBar />
-      <ScrollView style={{ backgroundColor: "red" }}>
+      <ScrollView style={{}}>
         {rankingsData?.map((item) => {
           return (
             <View
@@ -76,7 +75,6 @@ export default function Rankings() {
                 flexDirection: "row",
                 height: 60,
                 alignItems: "center",
-                backgroundColor: "cyan",
                 margin: 5,
               }}
             >
