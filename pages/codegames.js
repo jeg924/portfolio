@@ -29,10 +29,6 @@ export default function CodeGames() {
   const [won, setWon] = React.useState(false);
   const [failed, setFailed] = React.useState(false);
 
-  React.useEffect(() => {
-    setModalIsVisible(true);
-  }, []);
-
   const difficultyLevels = [
     { value: "Easy", label: "Easy" },
     { value: "Medium", label: "Medium" },

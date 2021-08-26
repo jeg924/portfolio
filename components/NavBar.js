@@ -115,7 +115,7 @@ export default function NavBar() {
               borderBottomColor: rankingsHovering ? "white" : "black",
             }}
           >
-            <Text style={{ color: "white" }}>Rankings </Text>
+            <Text style={{ color: "white" }}>Rankings</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -147,7 +147,7 @@ export default function NavBar() {
               borderBottomColor: codeGamesHovering ? "white" : "black",
             }}
           >
-            <Text style={{ color: "white" }}>Code Games </Text>
+            <Text style={{ color: "white" }}>Code Games</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -178,7 +178,7 @@ export default function NavBar() {
               borderBottomColor: loginHovering ? "white" : "black",
             }}
           >
-            <Text style={{ color: "white" }}>Login </Text>
+            <Text style={{ color: "white" }}>Login</Text>
           </View>
         </TouchableOpacity>
       </View>
