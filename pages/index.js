@@ -13,17 +13,28 @@ import { Button, StyleSheet, Text, View, ScrollView } from "react-native-web";
 import MyButton from "components/MyButton";
 import NavBar from "components/NavBar";
 
-export default function Home() {
+import Carousel from "nuka-carousel";
+import {
+  SiAlgolia,
+  SiFirebase,
+  SiReact,
+  SiVisualstudio,
+  SiGithub,
+} from "react-icons/si";
+
+// images
+
+export default function Portfolio() {
   return (
-    <View
-      style={{
-        flex: 1,
-        flexDirection: "column",
+    <div
+      css={{
+        width: "100%",
+        maxWidth: 1080,
+        marginLeft: "auto",
+        marginRight: "auto",
       }}
     >
-      <div>
-        <Text>Hello</Text>
-      </div>
-    </View>
+      <NavBar />
+    </div>
   );
 }
