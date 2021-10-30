@@ -16,6 +16,16 @@ class MyDocument extends Document {
           <NextScript />
           <Global
             styles={{
+              "*": {
+                boxSizing: "border-box", // this allows padding to be substracted from width, rather than added
+                // so width: 100%; padding: 10px = 100% box w/ padding on the inside RATHER THAN 100% + 20px width.
+              },
+              html: {
+                fontFamily: "Lato, sans-serif",
+              },
+              "h1,h2,h3,h4,h5,h6": {
+                margin: 0,
+              },
               body: {
                 height: "100vh",
                 width: "100vw",

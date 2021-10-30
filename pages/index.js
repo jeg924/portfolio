@@ -21,6 +21,7 @@ import {
   SiVisualstudio,
   SiGithub,
 } from "react-icons/si";
+import HelloSection from "components/HelloSection";
 
 // images
 
@@ -28,13 +29,19 @@ export default function Portfolio() {
   return (
     <div
       css={{
+        position: "relative",
         width: "100%",
         maxWidth: 1080,
+        paddingLeft: 30,
+        paddingRight: 30,
         marginLeft: "auto",
         marginRight: "auto",
       }}
     >
       <NavBar />
+      <div css={{ marginTop: 50 }}>
+        <HelloSection />
+      </div>
     </div>
   );
 }
