@@ -1,8 +1,7 @@
 // this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, css, Global } from "@emotion/react";
-import React from "react";
+import { jsx } from "@emotion/react";
 import Image from "next/image";
 import Carousel from "nuka-carousel";
 
@@ -20,7 +19,7 @@ import boss from "../public/images/ZenithSlides/Boss.png";
 
 export default function Projects() {
   return (
-    <div>
+    <div id="Projects" css={{ marginTop: 150 }}>
       <div css={{ display: "flex", justifyContent: "center" }}>
         <h1>Projects</h1>
       </div>

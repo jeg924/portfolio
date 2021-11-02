@@ -1,8 +1,7 @@
 // this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, css, Global } from "@emotion/react";
-import React from "react";
+import { jsx } from "@emotion/react";
 import Image from "next/image";
 
 import csharp from "../public/images/languages/csharpIcon.png";
@@ -21,7 +20,7 @@ import react from "../public/images/tools/reactIcon.png";
 
 export default function Skills() {
   return (
-    <div>
+    <div id="Skills" css={{ marginTop: 150 }}>
       <div css={{ display: "flex", justifyContent: "center" }}>
         <h1>Skills</h1>
       </div>
