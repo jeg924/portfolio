@@ -1,5 +1,5 @@
 {
-  "name": "learn-starter",
+  "name": "porfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,22 +10,8 @@
   "dependencies": {
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.4.1",
-    "@monaco-editor/react": "^4.2.2",
-    "@react-native-picker/picker": "^1.16.6",
     "next": "^11.0.0",
     "next-images": "^1.8.1",
-    "nuka-carousel": "^4.8.0",
-    "react": "17.0.2",
-    "react-dom": "^17.0.2",
-    "react-icons": "^4.2.0",
-    "react-native-web": "^0.17.1",
-    "react-picker": "^1.2.17",
-    "react-select": "^4.3.1",
-    "react-slick": "^0.28.1",
-    "react-toggle": "^4.1.2",
-    "slick-carousel": "^1.8.1"
-  },
-  "devDependencies": {
-    "babel-plugin-react-native-web": "^0.17.1"
+    "nuka-carousel": "^4.8.0"
   }
 }
