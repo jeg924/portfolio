@@ -14,9 +14,8 @@ import MyButton from "components/MyButton";
 import NavBar from "components/NavBar";
 
 import HelloSection from "components/HelloSection";
-import Projects from "components/projects";
-
-// images
+import Projects from "components/Projects";
+import Skills from "components/Skills";
 
 export default function Portfolio() {
   return (
@@ -36,7 +35,14 @@ export default function Portfolio() {
         <HelloSection />
       </div>
       <div css={{ marginTop: 150 }}>
-        <Projects id="Projects" />
+        <div id="Projects">
+          <Projects />
+        </div>
+      </div>
+      <div css={{ marginTop: 150 }}>
+        <div id="Skills">
+          <Skills />
+        </div>
       </div>
     </div>
   );

@@ -4,8 +4,6 @@
 import { jsx, css, Global } from "@emotion/react";
 import React from "react";
 
-const themeFont = ["lato", "sans-serif"];
-
 export default function NavBar() {
   return (
     <div
@@ -42,7 +40,7 @@ export default function NavBar() {
       >
         Portfolio
       </a>
-      <NavLink text="Projects" href="#Porfolio" />
+      <NavLink text="Projects" href="#Projects" />
       <NavLink text="Skills" href="#Skills" />
       <NavLink text="About" href="#About" />
     </div>
@@ -55,7 +53,6 @@ const NavLink = ({ href, text }) => {
       href={href}
       css={{
         textDecoration: "none",
-        fontFamily: themeFont,
         color: "#565656",
         marginLeft: 100, // this pushes other nav links to the left
         "&:hover": {
