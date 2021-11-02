@@ -5,7 +5,7 @@ import { jsx } from "@emotion/react";
 import Image from "next/image";
 
 import profilePic from "../public/images/profile.jpg";
-import Contact from "../components/Contact";
+import Contact from "./Contact";
 
 export default function HelloSection() {
   return (
