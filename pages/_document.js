@@ -31,7 +31,6 @@ class MyDocument extends Document {
                 width: "100vw",
                 display: "flex",
                 flexDirection: "column",
-                overflow: "hidden",
                 margin: 0,
               },
               "#__next": {

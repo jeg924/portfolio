@@ -10,6 +10,7 @@ export default function NavBar() {
   return (
     <div
       css={{
+        zIndex: 1000,
         width: "100%",
         display: "flex",
         height: 80,
@@ -19,6 +20,7 @@ export default function NavBar() {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between", // this wants to display all 4 items evenly
+        backgroundColor: "white",
       }}
     >
       <a

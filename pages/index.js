@@ -13,15 +13,8 @@ import { Button, StyleSheet, Text, View, ScrollView } from "react-native-web";
 import MyButton from "components/MyButton";
 import NavBar from "components/NavBar";
 
-import Carousel from "nuka-carousel";
-import {
-  SiAlgolia,
-  SiFirebase,
-  SiReact,
-  SiVisualstudio,
-  SiGithub,
-} from "react-icons/si";
 import HelloSection from "components/HelloSection";
+import Projects from "components/projects";
 
 // images
 
@@ -32,8 +25,8 @@ export default function Portfolio() {
         position: "relative",
         width: "100%",
         maxWidth: 1080,
-        paddingLeft: 30,
-        paddingRight: 30,
+        paddingLeft: 40,
+        paddingRight: 40,
         marginLeft: "auto",
         marginRight: "auto",
       }}
@@ -41,6 +34,9 @@ export default function Portfolio() {
       <NavBar />
       <div css={{ marginTop: 50 }}>
         <HelloSection />
+      </div>
+      <div css={{ marginTop: 150 }}>
+        <Projects id="Projects" />
       </div>
     </div>
   );
