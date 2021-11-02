@@ -97,6 +97,7 @@ export default function Projects() {
           headline="Saving Mechanism"
           paragraph="I learned how to serialize data and extract it again for loading from a save. The use of classes and inheritance from my teammates made my job much simpler."
           image={boss}
+          switchTextAndImage
         />
       </Carousel>
       <SectionBreak />
