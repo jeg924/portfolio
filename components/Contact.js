@@ -15,12 +15,12 @@ export default function Contact() {
       css={{
         display: "flex",
         flexDirection: "row",
+        alignItems: "center",
         height: 50,
-        justifyContent: "space-around",
         width: "100%",
       }}
     >
-      <p css={{ "@media (max-width: 300px)": { display: "none" } }}>
+      <p css={{ "@media (max-width: 500px)": { display: "none" } }}>
         Contact me on
       </p>
       <ContactMedia link="mailto:jeg924@gmail.com" image={mailIcon} />
@@ -39,15 +39,8 @@ export default function Contact() {
 
 const ContactMedia = ({ link, image }) => {
   return (
-    <div
-      css={{
-        width: 40,
-        position: "relative",
-      }}
-    >
-      <a href={link}>
-        <Image src={image} layout="responsive" objectFit="contain" />
-      </a>
-    </div>
+    <a css={{ marginLeft: 16 }} href={link} target="_blank">
+      <Image src={image} objectFit="contain" width={24} height={24} />
+    </a>
   );
 };

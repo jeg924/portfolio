@@ -11,14 +11,14 @@ export default function HelloSection() {
   return (
     <div
       css={{
-        marginTop: 50,
+        marginTop: 150,
         marginLeft: "auto",
         marginRight: "auto",
         maxWidth: 600,
         width: "100%",
         display: "flex",
         flexDirection: "row",
-        "@media (max-width: 300px)": {
+        "@media (max-width: 500px)": {
           flexDirection: "column",
           alignItems: "center",
         },
@@ -28,18 +28,19 @@ export default function HelloSection() {
         css={{
           width: 120,
           position: "relative",
-          "@media (min-width: 300px)": { marginRight: 20 },
+          "@media (min-width: 500px)": { marginRight: 20 },
         }}
       >
         <Image
           css={{ borderRadius: "100%" }}
           src={profilePic}
-          layout="responsive"
           objectFit="contain"
+          width={80}
+          height={80}
         />
       </div>
       <div>
-        <h1>Hi, I'm James Gonzales 👋 </h1>
+        <h1>Hi, I'm James&nbsp;Gonzales&nbsp;👋 </h1>
         <p>
           I’m a developer and recent graduate looking to use technology to make
           awesome things.

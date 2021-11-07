@@ -31,15 +31,15 @@ export default function About() {
         >
           <AboutSection
             heading="Full Stack Developer"
-            paragraph="I love making websites, apps, and games and learning how to use the tools involved. I like to think through the entire process from start to finish, even when I have a smaller, more specific role."
+            paragraph="I love making websites, apps, and games and learning how to use a variety of tools. Even when I have a smaller, more focused role, I value keeping the big picture in mind and thinking through a project from start to finish."
           />
           <AboutSection
             heading="Team Player"
-            paragraph="I love working with people. I like sharing and discussing ideas and strategies. I’m familiar with tools like Jira that help teams collaborate. If you are interested in hiring me, you should know I prefer to work in-person for at least part of the week."
+            paragraph="Working with people and sharing and discussing ideas and strategies energizes me. I’m familiar with tools like Jira that help teams collaborate, though I prefer to work in-person for at least part of the week."
           />
           <AboutSection
             heading="Mentor"
-            paragraph="Although I’m not very experienced yet, I love to help teach whenever I can. Whether it’s in the class-room, lab-room, or just chatting, I enjoy answering questions and helping others grow."
+            paragraph="Although I’m just beginning my career, I’m always learning and enjoy helping and teaching whenever I can. Whether it’s in the classroom, lab, or just chatting, I enjoy answering questions and helping others grow."
           />
         </div>
         <div
@@ -47,14 +47,20 @@ export default function About() {
             flex: 1,
             position: "relative",
             width: "100%",
-            "@media (max-width: 600px) and (min-width: 300px)": {
+            "@media (max-width: 600px) and (min-width: 500px)": {
               width: "50%",
               marginLeft: "auto",
               marginRight: "auto",
             },
           }}
         >
-          <Image src={profilePic} layout="responsive" objectFit="contain" />
+          <Image
+            src={profilePic}
+            layout="responsive"
+            objectFit="cover"
+            width={300}
+            height={400}
+          />
         </div>
       </div>
       <div css={{ marginTop: 20, marginBottom: 20 }}>

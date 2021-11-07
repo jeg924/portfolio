@@ -76,7 +76,7 @@ const Item = ({ image, description }) => {
           display: "flex",
           alignItems: "center",
           flexDirection: "row",
-          "@media (max-width: 300px)": {
+          "@media (max-width: 500px)": {
             marginLeft: 0,
           },
         }}
@@ -86,11 +86,11 @@ const Item = ({ image, description }) => {
             width: 50,
             height: 50,
             position: "relative",
-            "@media (max-width: 500px) and (min-width: 300px)": {
+            "@media (max-width: 500px) and (min-width: 500px)": {
               width: 30,
               height: 30,
             },
-            "@media (max-width: 300px)": { width: 20, height: 20 },
+            "@media (max-width: 500px)": { width: 20, height: 20 },
           }}
         >
           <Image src={image} layout="responsive" objectFit="contain" />
@@ -98,7 +98,7 @@ const Item = ({ image, description }) => {
         <p
           css={{
             paddingLeft: 10,
-            "@media (max-width: 300px)": { paddingLeft: 5 },
+            "@media (max-width: 500px)": { paddingLeft: 5 },
           }}
         >
           {description}

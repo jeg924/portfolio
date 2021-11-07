@@ -2,7 +2,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
-
 import NavBar from "components/NavBar";
 import HelloSection from "components/HelloSection";
 import Projects from "components/Projects";
@@ -11,22 +10,24 @@ import About from "components/About";
 
 export default function Portfolio() {
   return (
-    <div
-      css={{
-        position: "relative",
-        width: "100%",
-        maxWidth: 1080,
-        paddingLeft: 40,
-        paddingRight: 40,
-        marginLeft: "auto",
-        marginRight: "auto",
-      }}
-    >
+    <div>
       <NavBar />
-      <HelloSection />
-      <Projects />
-      <Skills />
-      <About />
+      <div
+        css={{
+          position: "relative",
+          width: "100%",
+          maxWidth: 1080,
+          paddingLeft: 40,
+          paddingRight: 40,
+          marginLeft: "auto",
+          marginRight: "auto",
+        }}
+      >
+        <HelloSection />
+        <Projects />
+        <Skills />
+        <About />
+      </div>
     </div>
   );
 }

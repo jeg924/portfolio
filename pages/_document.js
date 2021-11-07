@@ -10,7 +10,14 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Roboto:wght@700&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />
@@ -21,9 +28,13 @@ class MyDocument extends Document {
                 // so width: 100%; padding: 10px = 100% box w/ padding on the inside RATHER THAN 100% + 20px width.
               },
               html: {
-                fontFamily: "Lato, sans-serif",
+                fontFamily: "'Roboto Mono', monospace",
+                color: "#666",
               },
               "h1,h2,h3,h4,h5,h6": {
+                color: "black",
+                fontFamily: "Roboto",
+                fontWeight: 700,
                 margin: 0,
               },
               body: {

@@ -2,46 +2,76 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from "@emotion/react";
+import React, { useEffect, useState } from "react";
 
 export default function NavBar() {
+  const [borderVisible, setBorderVisible] = useState(false);
+
+  useEffect(() => {
+    function handleScroll() {
+      const shouldBorderBeVisible = window.scrollY > 50;
+      if (shouldBorderBeVisible !== borderVisible) {
+        setBorderVisible(shouldBorderBeVisible);
+      }
+    }
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [borderVisible]);
+
   return (
     <div
       css={{
         zIndex: 1000,
-        width: "100%",
-        display: "flex",
-        height: 80,
         position: "sticky",
         top: 0,
         left: 0,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between", // this wants to display all 4 items evenly
         backgroundColor: "white",
+        borderBottomWidth: 1,
+        borderBottomColor: borderVisible ? "gainsboro" : "transparent",
+        borderBottomStyle: "solid",
       }}
     >
-      <a
-        href="/"
+      <div
         css={{
-          marginRight: "auto", // this pushes 3 nav links as much to the right as possible
-          textDecoration: "none",
-          color: "#565656",
-
-          fontWeight: "600",
-          "&:hover": {
-            color: "black",
-            fontWeight: "bold",
-          },
-          "@media (max-width: 600px)": {
-            display: "none",
-          },
+          position: "relative",
+          width: "100%",
+          maxWidth: 1080,
+          paddingLeft: 40,
+          paddingRight: 40,
+          marginLeft: "auto",
+          marginRight: "auto",
+          display: "flex",
+          height: 50,
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between", // this wants to display all 4 items evenly
         }}
       >
-        Portfolio
-      </a>
-      <NavLink text="Projects" href="#Projects" />
-      <NavLink text="Skills" href="#Skills" />
-      <NavLink text="About" href="#About" />
+        <a
+          href="/"
+          css={{
+            marginRight: "auto", // this pushes 3 nav links as much to the right as possible
+            textDecoration: "none",
+            color: "#565656",
+
+            fontWeight: "600",
+            "&:hover": {
+              color: "black",
+              fontWeight: "bold",
+            },
+            "@media (max-width: 600px)": {
+              display: "none",
+            },
+          }}
+        >
+          Portfolio
+        </a>
+        <NavLink text="Projects" href="#Projects" />
+        <NavLink text="Skills" href="#Skills" />
+        <NavLink text="About" href="#About" />
+      </div>
     </div>
   );
 }

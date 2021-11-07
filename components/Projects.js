@@ -4,20 +4,28 @@
 import { jsx } from "@emotion/react";
 import Image from "next/image";
 import Carousel from "nuka-carousel";
+import React from "react";
+import { useMediaQuery } from "react-responsive";
+
+import { BiChevronLeftCircle, BiChevronRightCircle } from "react-icons/bi";
 
 import createWorkout from "../public/images/OutworkSlides/CreateWorkout.png";
 import home from "../public/images/OutworkSlides/Home.png";
 import myWorkouts from "../public/images/OutworkSlides/MyWorkouts.png";
 import browse from "../public/images/OutworkSlides/Browse.png";
-import workoutAndReview from "../public/images/OutworkSlides/WorkoutAndReview.png";
+import reviewWorkout from "../public/images/OutworkSlides/ReviewWorkout.png";
 import video from "../public/images/OutworkSlides/Video.png";
 import profile from "../public/images/OutworkSlides/Profile.png";
 
 import menu from "../public/images/ZenithSlides/Menu.png";
 import levels from "../public/images/ZenithSlides/Levels.png";
-import boss from "../public/images/ZenithSlides/Boss.png";
+import saving from "../public/images/ZenithSlides/Saving.png";
 
 export default function Projects() {
+  const wideScreen = useMediaQuery({
+    query: "(min-width: 1120px)",
+  });
+
   return (
     <div id="Projects" css={{ marginTop: 150 }}>
       <div css={{ display: "flex", justifyContent: "center" }}>
@@ -25,41 +33,58 @@ export default function Projects() {
       </div>
       <Introduction
         title="Outwork"
-        description="A react-native app to let friends create their own workouts, share their favorite workouts, and compare stats."
+        description="A React Native app to let friends create their own workouts, share their favorite workouts, and compare stats."
       />
       <Carousel
+        wrapAround
         autoplay
         autoplayInterval={15000}
         renderCenterRightControls={null}
         renderCenterLeftControls={null}
+        transitionMode="fade"
+        enableKeyboardControls
+        renderCenterRightControls={
+          !wideScreen
+            ? null
+            : ({ nextSlide }) => (
+                <SlideButton direction="right" nextSlide={nextSlide} />
+              )
+        }
+        renderCenterLeftControls={
+          !wideScreen
+            ? null
+            : ({ previousSlide }) => (
+                <SlideButton direction="left" previousSlide={previousSlide} />
+              )
+        }
       >
         <Slide
-          headline="Easy to jump around and pick up where you left off"
+          headline="Pick up where you left off"
           paragraph="I modeled the home screen after the home screen in the Spotify app. The main idea is that users can quickly jump back into whatever they were doing. Whether they were finishing a workout, updating their profile, or looking for a popular or new workout that fits their style."
           image={home}
         />
         <Slide
-          headline="Previous workouts are easy to access"
+          headline="Keep track of your favorite workouts"
           paragraph="The My Workouts screen allows users to browse their history, favorites (library), and uploads. It also gives  them a chance to start or remove any of the workouts that they find in these three categories, or in the case of a workout that they uploaded, it gives them the chance to edit or delete that workout however they choose."
           image={myWorkouts}
         />
         <Slide
-          headline="Browsing made easy"
+          headline="Find the right workout quickly"
           paragraph="The browse screen works with Algolia ( a search engine tool ) to provide advanced filtering and lightning quick results, even if there are thousands of data points to sort through."
           image={browse}
         />
         <Slide
-          headline="Easy to create your own workouts"
+          headline="Create your own workout"
           paragraph="The create-workout flow uses the same large button that appears elsewhere in the app for familiarity. Automatic scrolling and minimalistic active buttons make the user-experience easy and intuitive."
           image={createWorkout}
         />
         <Slide
-          headline="Competing with your friends is easy."
+          headline="Compare your stats with your friends"
           paragraph="Simply review your stats and choose a friend to compare with. The workout flow is robust; taking into account unfinished workouts, blank stats input, and requests to compare with friends who haven't completed that particular workout yet."
-          image={workoutAndReview}
+          image={reviewWorkout}
         />
         <Slide
-          headline="Move through the workout one exercise at a time"
+          headline="Record your stats quickly and keep working out"
           paragraph="The exercise videos guide the users through the workout and use a custom interface for inputting stats. If the exercise tracks reps, or weight and reps, or time, the interface will adapt accordingly to make the user experience as smooth as possible."
           image={video}
           switchTextAndImage
@@ -73,29 +98,44 @@ export default function Projects() {
       <SectionBreak />
       <Introduction
         title="Zenith"
-        description="A retro spaceship game I helped build with three of my schoolmates. I worked primarily on the level design and saving mechanism."
+        description="A retro spaceship game I built in collaboration with three classmates. I worked primarily on the level design and saving mechanism."
       />
       <Carousel
+        wrapAround
         autoplay
         autoplayInterval={10000}
         pauseOnHover
-        renderCenterRightControls={null}
-        renderCenterLeftControls={null}
+        transitionMode="fade"
+        enableKeyboardControls
+        renderCenterRightControls={
+          !wideScreen
+            ? null
+            : ({ nextSlide }) => (
+                <SlideButton direction="right" nextSlide={nextSlide} />
+              )
+        }
+        renderCenterLeftControls={
+          !wideScreen
+            ? null
+            : ({ previousSlide }) => (
+                <SlideButton direction="left" previousSlide={previousSlide} />
+              )
+        }
       >
         <Slide
-          headline="Classic Arcade Style"
+          headline="Choose your difficulty and name your space ship"
           paragraph="We built a familiar title screen that features game loading, difficulty settings, instructions, high scores, and credits."
           image={menu}
         />
         <Slide
-          headline="Level Design"
-          paragraph="Levels are made up of waves of enemy ships and asteroids to juke and shoot down with lasers."
+          headline="Juke and gibe through waves of enemy spaceships and lasers"
+          paragraph="Levels are made up of waves of enemy ships and asteroids that spawn a few seconds after you clear the next wave. At the end of every level is a Boss. There are 5 levels and 5 bosses total."
           image={levels}
         />
         <Slide
-          headline="Saving Mechanism"
+          headline="Save your game and jump back in by loading your previous save"
           paragraph="I learned how to serialize data and extract it again for loading from a save. The use of classes and inheritance from my teammates made my job much simpler."
-          image={boss}
+          image={saving}
           switchTextAndImage
         />
       </Carousel>
@@ -113,7 +153,7 @@ const Introduction = ({ title, description }) => {
         borderLeftWidth: 0,
         borderRightWidth: 0,
         marginTop: 50,
-        marginBottom: 50,
+        marginBottom: 20,
       }}
     >
       <h2>{title}</h2>
@@ -128,14 +168,14 @@ const Slide = ({ headline, paragraph, image, switchTextAndImage }) => {
       css={{
         display: "flex",
         flexDirection: "row",
-        "@media (max-width: 300px)": {
+        "@media (max-width: 600px)": {
           flexDirection: "column",
           alignItems: "center",
         },
       }}
     >
       <div css={{ flex: 1.5, position: "relative", width: "100%" }}>
-        <Image src={image} layout="responsive" objectFit="contain" />
+        <Image src={image} objectFit="contain" width={500} height={400} />
       </div>
       <div css={{ flex: 1 }}>
         <h3>{headline}</h3>
@@ -147,7 +187,7 @@ const Slide = ({ headline, paragraph, image, switchTextAndImage }) => {
       css={{
         display: "flex",
         flexDirection: "row",
-        "@media (max-width: 300px)": {
+        "@media (max-width: 600px)": {
           flexDirection: "column",
           alignItems: "center",
         },
@@ -158,7 +198,7 @@ const Slide = ({ headline, paragraph, image, switchTextAndImage }) => {
         <p>{paragraph}</p>
       </div>
       <div css={{ flex: 1.5, position: "relative", width: "100%" }}>
-        <Image src={image} layout="responsive" objectFit="contain" />
+        <Image src={image} objectFit="contain" width={500} height={400} />
       </div>
     </div>
   );
@@ -176,5 +216,47 @@ const SectionBreak = () => {
         marginBottom: 50,
       }}
     ></div>
+  );
+};
+
+const SlideButton = ({ direction, nextSlide, previousSlide }) => {
+  return direction === "right" ? (
+    <button
+      css={{
+        position: "absolute",
+        right: 0,
+        top: "50%",
+        border: "none",
+        transform: "translateX(100%) translateY(-50%)",
+        background: "none",
+        color: "gainsboro",
+        cursor: "pointer",
+        ":hover": {
+          color: "gray",
+        },
+      }}
+      onClick={nextSlide}
+    >
+      <BiChevronRightCircle size={50} />
+    </button>
+  ) : (
+    <button
+      css={{
+        position: "absolute",
+        right: 0,
+        top: "50%",
+        border: "none",
+        transform: "translateX(0%) translateY(-50%)",
+        background: "none",
+        color: "gainsboro",
+        cursor: "pointer",
+        ":hover": {
+          color: "gray",
+        },
+      }}
+      onClick={previousSlide}
+    >
+      <BiChevronLeftCircle size={50} />
+    </button>
   );
 };
