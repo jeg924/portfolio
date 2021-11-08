@@ -14,8 +14,8 @@ import home from "../public/images/OutworkSlides/Home.png";
 import myWorkouts from "../public/images/OutworkSlides/MyWorkouts.png";
 import browse from "../public/images/OutworkSlides/Browse.png";
 import reviewWorkout from "../public/images/OutworkSlides/ReviewWorkout.png";
-import video from "../public/images/OutworkSlides/Video.png";
-import profile from "../public/images/OutworkSlides/Profile.png";
+// import video from "../public/images/OutworkSlides/Video.png";
+// import profile from "../public/images/OutworkSlides/Profile.png";
 
 import menu from "../public/images/ZenithSlides/Menu.png";
 import levels from "../public/images/ZenithSlides/Levels.png";
@@ -24,6 +24,9 @@ import saving from "../public/images/ZenithSlides/Saving.png";
 export default function Projects() {
   const wideScreen = useMediaQuery({
     query: "(min-width: 1120px)",
+  });
+  const narrowScreen = useMediaQuery({
+    query: "(max-width: 500px)",
   });
 
   return (
@@ -34,6 +37,7 @@ export default function Projects() {
       <Introduction
         title="Outwork"
         description="A React Native app to let friends create their own workouts, share their favorite workouts, and compare stats."
+        link="https://github.com/jeg924/WorkoutsApp"
       />
       <Carousel
         wrapAround
@@ -41,7 +45,7 @@ export default function Projects() {
         autoplayInterval={15000}
         renderCenterRightControls={null}
         renderCenterLeftControls={null}
-        transitionMode="fade"
+        transitionMode={narrowScreen ? "scroll" : "fade"}
         enableKeyboardControls
         renderCenterRightControls={
           !wideScreen
@@ -67,6 +71,7 @@ export default function Projects() {
           headline="Keep track of your favorite workouts"
           paragraph="The My Workouts screen allows users to browse their history, favorites (library), and uploads. It also gives  them a chance to start or remove any of the workouts that they find in these three categories, or in the case of a workout that they uploaded, it gives them the chance to edit or delete that workout however they choose."
           image={myWorkouts}
+          switchTextAndImage
         />
         <Slide
           headline="Find the right workout quickly"
@@ -77,13 +82,14 @@ export default function Projects() {
           headline="Create your own workout"
           paragraph="The create-workout flow uses the same large button that appears elsewhere in the app for familiarity. Automatic scrolling and minimalistic active buttons make the user-experience easy and intuitive."
           image={createWorkout}
+          switchTextAndImage
         />
         <Slide
           headline="Compare your stats with your friends"
           paragraph="Simply review your stats and choose a friend to compare with. The workout flow is robust; taking into account unfinished workouts, blank stats input, and requests to compare with friends who haven't completed that particular workout yet."
           image={reviewWorkout}
         />
-        <Slide
+        {/* <Slide
           headline="Record your stats quickly and keep working out"
           paragraph="The exercise videos guide the users through the workout and use a custom interface for inputting stats. If the exercise tracks reps, or weight and reps, or time, the interface will adapt accordingly to make the user experience as smooth as possible."
           image={video}
@@ -93,19 +99,20 @@ export default function Projects() {
           headline="Add friends and edit your profile"
           paragraph="It's easy to edit your profile in Outwork. The UI is minimalistic, which means you don't have to scroll through settings you don't need to edit your profile. To add or remove a friend, you can simply use the Browse tab to search users by name and click the 'Add Friend' button beneath their profile picture."
           image={profile}
-        />
+        /> */}
       </Carousel>
       <SectionBreak />
       <Introduction
         title="Zenith"
         description="A retro spaceship game I built in collaboration with three classmates. I worked primarily on the level design and saving mechanism."
+        link="https://github.com/CpS-209-Team3/Zenith"
       />
       <Carousel
         wrapAround
         autoplay
         autoplayInterval={10000}
         pauseOnHover
-        transitionMode="fade"
+        transitionMode={narrowScreen ? "scroll" : "fade"}
         enableKeyboardControls
         renderCenterRightControls={
           !wideScreen
@@ -144,7 +151,7 @@ export default function Projects() {
   );
 }
 
-const Introduction = ({ title, description }) => {
+const Introduction = ({ title, description, link }) => {
   return (
     <div
       css={{
@@ -158,6 +165,9 @@ const Introduction = ({ title, description }) => {
     >
       <h2>{title}</h2>
       <p>{description}</p>
+      <a href={link} css={{ textDecorationColor: "blue" }} target="_blank">
+        <p css={{ color: "blue" }}>See project on GitHub</p>
+      </a>
     </div>
   );
 };
@@ -168,7 +178,7 @@ const Slide = ({ headline, paragraph, image, switchTextAndImage }) => {
       css={{
         display: "flex",
         flexDirection: "row",
-        "@media (max-width: 600px)": {
+        "@media (max-width: 500px)": {
           flexDirection: "column",
           alignItems: "center",
         },
@@ -177,7 +187,7 @@ const Slide = ({ headline, paragraph, image, switchTextAndImage }) => {
       <div css={{ flex: 1.5, position: "relative", width: "100%" }}>
         <Image src={image} objectFit="contain" width={500} height={400} />
       </div>
-      <div css={{ flex: 1 }}>
+      <div css={{ flex: 1, "@media (max-width: 500px)": { marginTop: 20 } }}>
         <h3>{headline}</h3>
         <p>{paragraph}</p>
       </div>
@@ -187,13 +197,13 @@ const Slide = ({ headline, paragraph, image, switchTextAndImage }) => {
       css={{
         display: "flex",
         flexDirection: "row",
-        "@media (max-width: 600px)": {
-          flexDirection: "column",
+        "@media (max-width: 500px)": {
+          flexDirection: "column-reverse",
           alignItems: "center",
         },
       }}
     >
-      <div css={{ flex: 1 }}>
+      <div css={{ flex: 1, "@media (max-width: 500px)": { marginTop: 20 } }}>
         <h3>{headline}</h3>
         <p>{paragraph}</p>
       </div>

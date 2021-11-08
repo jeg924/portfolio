@@ -17,8 +17,8 @@ export default function Portfolio() {
           position: "relative",
           width: "100%",
           maxWidth: 1080,
-          paddingLeft: 40,
-          paddingRight: 40,
+          paddingLeft: 20,
+          paddingRight: 20,
           marginLeft: "auto",
           marginRight: "auto",
         }}

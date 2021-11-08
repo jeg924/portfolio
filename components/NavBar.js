@@ -38,8 +38,8 @@ export default function NavBar() {
           position: "relative",
           width: "100%",
           maxWidth: 1080,
-          paddingLeft: 40,
-          paddingRight: 40,
+          paddingLeft: 20,
+          paddingRight: 20,
           marginLeft: "auto",
           marginRight: "auto",
           display: "flex",
@@ -66,7 +66,7 @@ export default function NavBar() {
             },
           }}
         >
-          Portfolio
+          James Gonzales
         </a>
         <NavLink text="Projects" href="#Projects" />
         <NavLink text="Skills" href="#Skills" />

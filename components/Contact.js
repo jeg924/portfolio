@@ -14,33 +14,44 @@ export default function Contact() {
     <div
       css={{
         display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        height: 50,
-        width: "100%",
+        justifyContent: "center",
+        flexDirection: "column",
       }}
     >
-      <p css={{ "@media (max-width: 500px)": { display: "none" } }}>
-        Contact me on
-      </p>
-      <ContactMedia link="mailto:jeg924@gmail.com" image={mailIcon} />
-      <ContactMedia link="https://github.com/jeg924" image={githubIcon} />
-      <ContactMedia
-        link="https://www.linkedin.com/in/james-gonzales-809401189/"
-        image={linkedinIcon}
-      />
-      <ContactMedia
-        link="https://docs.google.com/document/d/1CyZ9LgSe5KPKBIcxmmfk1rzk-NOeL-g85Kbiom6RrIc/edit"
-        image={googledocsIcon}
-      />
+      <div
+        css={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          marginRight: "auto",
+          marginLeft: "auto",
+        }}
+      >
+        <p>Contact&nbsp;me&nbsp;on</p>
+        <ContactMedia link="mailto:jeg924@gmail.com" image={mailIcon} />
+        <ContactMedia link="https://github.com/jeg924" image={githubIcon} />
+      </div>
+
+      <a
+        href="https://docs.google.com/document/d/1CyZ9LgSe5KPKBIcxmmfk1rzk-NOeL-g85Kbiom6RrIc/edit"
+        css={{
+          textDecorationColor: "blue",
+          color: "blue",
+          justifyContent: "center",
+          display: "flex",
+        }}
+        target="_blank"
+      >
+        See my resume
+      </a>
     </div>
   );
 }
 
 const ContactMedia = ({ link, image }) => {
   return (
-    <a css={{ marginLeft: 16 }} href={link} target="_blank">
-      <Image src={image} objectFit="contain" width={24} height={24} />
+    <a css={{ paddingLeft: 10 }} href={link} target="_blank">
+      <Image src={image} objectFit="contain" width={40} height={40} />
     </a>
   );
 };

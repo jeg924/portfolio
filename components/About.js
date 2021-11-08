@@ -56,10 +56,9 @@ export default function About() {
         >
           <Image
             src={profilePic}
-            layout="responsive"
-            objectFit="cover"
-            width={300}
-            height={400}
+            objectFit="contain"
+            width={500}
+            height={500}
           />
         </div>
       </div>
@@ -72,7 +71,7 @@ export default function About() {
 
 const AboutSection = ({ heading, paragraph }) => {
   return (
-    <div>
+    <div css={{ marginBottom: 50 }}>
       <h3>{heading}</h3>
       <p>{paragraph}</p>
     </div>

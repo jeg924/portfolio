@@ -24,36 +24,38 @@ export default function Skills() {
       <div css={{ display: "flex", justifyContent: "center" }}>
         <h1>Skills</h1>
       </div>
-      <SkillSummary
-        type="Languages"
-        image1={csharp}
-        description1="C#"
-        image2={javascript}
-        description2="JS"
-        image3={python}
-        description3="Python"
-        image4={html}
-        description4="HTML"
-        image5={cpp}
-        description5="C++"
-        image6={cssicon}
-        description6="Css"
-      />
-      <SkillSummary
-        type="Tools"
-        image1={algolia}
-        description1="Algolia"
-        image2={docker}
-        description2="Docker"
-        image3={figma}
-        description3="Figma"
-        image4={firebase}
-        description4="Firebase"
-        image5={github}
-        description5="Github"
-        image6={react}
-        description6="React"
-      />
+      <div css={{ maxWidth: 500, marginLeft: "auto", marginRight: "auto" }}>
+        <SkillSummary
+          type="Languages"
+          image1={csharp}
+          description1="C#"
+          image2={javascript}
+          description2="JS"
+          image3={python}
+          description3="Python"
+          image4={html}
+          description4="HTML"
+          image5={cpp}
+          description5="C++"
+          image6={cssicon}
+          description6="CSS"
+        />
+        <SkillSummary
+          type="Tools"
+          image1={algolia}
+          description1="Algolia"
+          image2={docker}
+          description2="Docker"
+          image3={figma}
+          description3="Figma"
+          image4={firebase}
+          description4="Firebase"
+          image5={github}
+          description5="Github"
+          image6={react}
+          description6="React"
+        />
+      </div>
     </div>
   );
 }
@@ -63,16 +65,11 @@ const Item = ({ image, description }) => {
     <div
       css={{
         width: "33%",
-        display: "flex",
-        flexDirection: "row",
-        "@media (max-width: 500px)": { width: "50%" },
       }}
     >
       <div
         css={{
-          marginLeft: "25%",
-          marginTop: "15%",
-          marginBottom: "15%",
+          padding: 10,
           display: "flex",
           alignItems: "center",
           flexDirection: "row",
@@ -83,8 +80,8 @@ const Item = ({ image, description }) => {
       >
         <div
           css={{
-            width: 50,
-            height: 50,
+            width: 40,
+            height: 40,
             position: "relative",
             "@media (max-width: 500px) and (min-width: 500px)": {
               width: 30,
@@ -93,10 +90,11 @@ const Item = ({ image, description }) => {
             "@media (max-width: 500px)": { width: 20, height: 20 },
           }}
         >
-          <Image src={image} layout="responsive" objectFit="contain" />
+          <Image src={image} width={40} height={40} objectFit="contain" />
         </div>
         <p
           css={{
+            margin: 0,
             paddingLeft: 10,
             "@media (max-width: 500px)": { paddingLeft: 5 },
           }}
@@ -125,12 +123,21 @@ const SkillSummary = ({
 }) => {
   return (
     <div css={{ marginTop: 50 }}>
-      <div css={{ display: "flex", justifyContent: "center" }}>
+      <div
+        css={{
+          display: "flex",
+          justifyContent: "center",
+          border: "solid gainsboro 1px",
+          borderTopWidth: 0,
+          borderLeftWidth: 0,
+          borderRightWidth: 0,
+        }}
+      >
         <h2>{type}</h2>
       </div>
       <div
         css={{
-          marginTop: 50,
+          marginTop: 10,
           display: "flex",
           flexWrap: "wrap",
           flexDirection: "row",
