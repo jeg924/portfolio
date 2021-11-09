@@ -61,6 +61,8 @@ export default function Projects() {
         //         <SlideButton direction="left" previousSlide={previousSlide} />
         //       )
         // }
+        renderCenterRightControls={null}
+        renderCenterLeftControls={null}
       >
         <Slide
           headline="Pick up where you left off"
@@ -128,6 +130,8 @@ export default function Projects() {
         //         <SlideButton direction="left" previousSlide={previousSlide} />
         //       )
         // }
+        renderCenterRightControls={null}
+        renderCenterLeftControls={null}
       >
         <Slide
           headline="Choose your difficulty and name your space ship"
