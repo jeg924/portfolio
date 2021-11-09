@@ -47,20 +47,20 @@ export default function Projects() {
         renderCenterLeftControls={null}
         transitionMode={narrowScreen ? "scroll" : "fade"}
         enableKeyboardControls
-        renderCenterRightControls={
-          !wideScreen
-            ? null
-            : ({ nextSlide }) => (
-                <SlideButton direction="right" nextSlide={nextSlide} />
-              )
-        }
-        renderCenterLeftControls={
-          !wideScreen
-            ? null
-            : ({ previousSlide }) => (
-                <SlideButton direction="left" previousSlide={previousSlide} />
-              )
-        }
+        // renderCenterRightControls={
+        //   !wideScreen
+        //     ? null
+        //     : ({ nextSlide }) => (
+        //         <SlideButton direction="right" nextSlide={nextSlide} />
+        //       )
+        // }
+        // renderCenterLeftControls={
+        //   !wideScreen
+        //     ? null
+        //     : ({ previousSlide }) => (
+        //         <SlideButton direction="left" previousSlide={previousSlide} />
+        //       )
+        // }
       >
         <Slide
           headline="Pick up where you left off"
@@ -114,20 +114,20 @@ export default function Projects() {
         pauseOnHover
         transitionMode={narrowScreen ? "scroll" : "fade"}
         enableKeyboardControls
-        renderCenterRightControls={
-          !wideScreen
-            ? null
-            : ({ nextSlide }) => (
-                <SlideButton direction="right" nextSlide={nextSlide} />
-              )
-        }
-        renderCenterLeftControls={
-          !wideScreen
-            ? null
-            : ({ previousSlide }) => (
-                <SlideButton direction="left" previousSlide={previousSlide} />
-              )
-        }
+        // renderCenterRightControls={
+        //   !wideScreen
+        //     ? null
+        //     : ({ nextSlide }) => (
+        //         <SlideButton direction="right" nextSlide={nextSlide} />
+        //       )
+        // }
+        // renderCenterLeftControls={
+        //   !wideScreen
+        //     ? null
+        //     : ({ previousSlide }) => (
+        //         <SlideButton direction="left" previousSlide={previousSlide} />
+        //       )
+        // }
       >
         <Slide
           headline="Choose your difficulty and name your space ship"
