@@ -54,6 +54,9 @@ class MyDocument extends Document {
                 display: "flex",
                 flexDirection: "column",
               },
+              ".slick-active": {
+                zIndex: 999,
+              },
             }}
           />
         </body>

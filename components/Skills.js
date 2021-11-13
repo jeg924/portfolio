@@ -131,13 +131,14 @@ const SkillSummary = ({
           borderTopWidth: 0,
           borderLeftWidth: 0,
           borderRightWidth: 0,
+          paddingBottom: 50,
         }}
       >
         <h2>{type}</h2>
       </div>
       <div
         css={{
-          marginTop: 10,
+          marginTop: 50,
           display: "flex",
           flexWrap: "wrap",
           flexDirection: "row",

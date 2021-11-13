@@ -4,6 +4,7 @@
 import { jsx } from "@emotion/react";
 import Image from "next/image";
 import Carousel from "nuka-carousel";
+import Slider from "react-slick";
 import React from "react";
 import { useMediaQuery } from "react-responsive";
 
@@ -14,12 +15,24 @@ import home from "../public/images/OutworkSlides/Home.png";
 import myWorkouts from "../public/images/OutworkSlides/MyWorkouts.png";
 import browse from "../public/images/OutworkSlides/Browse.png";
 import reviewWorkout from "../public/images/OutworkSlides/ReviewWorkout.png";
-// import video from "../public/images/OutworkSlides/Video.png";
-// import profile from "../public/images/OutworkSlides/Profile.png";
 
 import menu from "../public/images/ZenithSlides/Menu.png";
 import levels from "../public/images/ZenithSlides/Levels.png";
 import saving from "../public/images/ZenithSlides/Saving.png";
+
+import csharp from "../public/images/languages/csharpIcon.png";
+import javascript from "../public/images/languages/javascriptIcon.png";
+import python from "../public/images/languages/pythonIcon.png";
+import html from "../public/images/languages/htmlIcon.png";
+import cpp from "../public/images/languages/CppIcon.png";
+import cssicon from "../public/images/languages/cssIcon.png";
+
+import algolia from "../public/images/tools/algoliaIcon.png";
+import docker from "../public/images/tools/dockerIcon.png";
+import figma from "../public/images/tools/figmaIcon.png";
+import firebase from "../public/images/tools/firebaseIcon.png";
+import github from "../public/images/tools/githubIcon.png";
+import react from "../public/images/tools/reactIcon.png";
 
 export default function Projects() {
   const wideScreen = useMediaQuery({
@@ -28,6 +41,9 @@ export default function Projects() {
   const narrowScreen = useMediaQuery({
     query: "(max-width: 500px)",
   });
+
+  const outworkCarousalRef = React.useRef();
+  const zenithCarousalRef = React.useRef();
 
   return (
     <div id="Projects" css={{ marginTop: 150 }}>
@@ -39,181 +55,188 @@ export default function Projects() {
         description="A React Native app to let friends create their own workouts, share their favorite workouts, and compare stats."
         link="https://github.com/jeg924/WorkoutsApp"
       />
-      <Carousel
-        wrapAround
+      <Slider
+        infinite
         autoplay
-        autoplayInterval={15000}
-        renderCenterRightControls={null}
-        renderCenterLeftControls={null}
-        transitionMode={narrowScreen ? "scroll" : "fade"}
-        enableKeyboardControls
-        // renderCenterRightControls={
-        //   !wideScreen
-        //     ? null
-        //     : ({ nextSlide }) => (
-        //         <SlideButton direction="right" nextSlide={nextSlide} />
-        //       )
-        // }
-        // renderCenterLeftControls={
-        //   !wideScreen
-        //     ? null
-        //     : ({ previousSlide }) => (
-        //         <SlideButton direction="left" previousSlide={previousSlide} />
-        //       )
-        // }
-        renderCenterRightControls={null}
-        renderCenterLeftControls={null}
+        autoplaySpeed={10000}
+        pauseOnHover
+        fade={narrowScreen ? false : true}
+        dots
+        ref={outworkCarousalRef}
       >
         <Slide
-          headline="Pick up where you left off"
-          paragraph="I modeled the home screen after the home screen in the Spotify app. The main idea is that users can quickly jump back into whatever they were doing. Whether they were finishing a workout, updating their profile, or looking for a popular or new workout that fits their style."
+          carousalRef={outworkCarousalRef}
+          headline="Making navigation easy"
+          paragraph="Apps like Spotify use the home screen as a springboard into the rest of the app. You can jump back into what you were doing, check out new material that you’ll probably like, or browse what’s popular. I built something similar in Outwork. My algorithm builds a list of workouts the user started but didn’t finish, a profile based on the user’s previous workouts which it uses to recommend new workouts, and a list of the most popular workouts on the app."
           image={home}
+          icons={[react, firebase]}
         />
         <Slide
-          headline="Keep track of your favorite workouts"
-          paragraph="The My Workouts screen allows users to browse their history, favorites (library), and uploads. It also gives  them a chance to start or remove any of the workouts that they find in these three categories, or in the case of a workout that they uploaded, it gives them the chance to edit or delete that workout however they choose."
+          carousalRef={outworkCarousalRef}
+          headline="Making the most of space"
+          paragraph="In some places I wanted to give users lots of options but didn’t feel I had the space to do it. Two awesome tools that helped me immensely in this regard were segment controls and action sheets. In the MyWorkouts screen I used a segment control to give users access to the workouts in their history, library, and uploads and an action sheet to manage those workouts."
           image={myWorkouts}
-          switchTextAndImage
+          icons={[react, firebase]}
         />
         <Slide
-          headline="Find the right workout quickly"
-          paragraph="The browse screen works with Algolia ( a search engine tool ) to provide advanced filtering and lightning quick results, even if there are thousands of data points to sort through."
+          carousalRef={outworkCarousalRef}
+          headline="Searching with Aloglia"
+          paragraph="I used Algolia for the app’s search engine. Whenever a user or workout is created in the app, a firebase function syncs the firestore database with the Algolia database which allowed me to add custom filters that made searching easy and fast. Algolia requires careful attention to the data structures that are indexed, and I learned how to use the Algolia dashboard as I modified the metadata of my workouts and users so that my app would stay functional."
           image={browse}
+          icons={[react, algolia, firebase]}
         />
         <Slide
-          headline="Create your own workout"
-          paragraph="The create-workout flow uses the same large button that appears elsewhere in the app for familiarity. Automatic scrolling and minimalistic active buttons make the user-experience easy and intuitive."
+          carousalRef={outworkCarousalRef}
+          headline="Scrolling for effect"
           image={createWorkout}
-          switchTextAndImage
+          paragraph="When the create-workout flow I wanted a way to show the user what they had built so far and also quickly give them a way to add exercises to a workout. To do this, I decided to automatically scroll down a list of exercises every time the user added a new one and present them the option to add another exercise in the middle of the screen. I used a reference to the flat-list and a function that fired every time an exercise was added to scroll down with animation."
+          icons={[react, firebase]}
         />
         <Slide
-          headline="Compare your stats with your friends"
-          paragraph="Simply review your stats and choose a friend to compare with. The workout flow is robust; taking into account unfinished workouts, blank stats input, and requests to compare with friends who haven't completed that particular workout yet."
+          carousalRef={outworkCarousalRef}
+          headline="Sharing content between two screens"
+          paragraph="One of the challenges I faced early on was sharing content between screens. Because of the way React Stack Navigator stacks screens when navigating back and forth, a screen’s content can’t normally be updated by another screen. To solve this, I passed callbacks with references to state variables to React navigation and used the callback in a modal screen to update the state in the previous screen. Elsewhere in my app I used firebase listeners to automatically refresh a screen once the database had been updated."
           image={reviewWorkout}
+          icons={[react, firebase]}
         />
-        {/* <Slide
-          headline="Record your stats quickly and keep working out"
-          paragraph="The exercise videos guide the users through the workout and use a custom interface for inputting stats. If the exercise tracks reps, or weight and reps, or time, the interface will adapt accordingly to make the user experience as smooth as possible."
-          image={video}
-          switchTextAndImage
-        />
-        <Slide
-          headline="Add friends and edit your profile"
-          paragraph="It's easy to edit your profile in Outwork. The UI is minimalistic, which means you don't have to scroll through settings you don't need to edit your profile. To add or remove a friend, you can simply use the Browse tab to search users by name and click the 'Add Friend' button beneath their profile picture."
-          image={profile}
-        /> */}
-      </Carousel>
+      </Slider>
       <SectionBreak />
       <Introduction
         title="Zenith"
         description="A retro spaceship game I built in collaboration with three classmates. I worked primarily on the level design and saving mechanism."
         link="https://github.com/CpS-209-Team3/Zenith"
       />
-      <Carousel
-        wrapAround
+      <Slider
+        infinite
         autoplay
-        autoplayInterval={10000}
+        autoplaySpeed={10000}
         pauseOnHover
-        transitionMode={narrowScreen ? "scroll" : "fade"}
-        enableKeyboardControls
-        // renderCenterRightControls={
-        //   !wideScreen
-        //     ? null
-        //     : ({ nextSlide }) => (
-        //         <SlideButton direction="right" nextSlide={nextSlide} />
-        //       )
-        // }
-        // renderCenterLeftControls={
-        //   !wideScreen
-        //     ? null
-        //     : ({ previousSlide }) => (
-        //         <SlideButton direction="left" previousSlide={previousSlide} />
-        //       )
-        // }
-        renderCenterRightControls={null}
-        renderCenterLeftControls={null}
+        fade={narrowScreen ? false : true}
+        dots
+        ref={zenithCarousalRef}
       >
         <Slide
-          headline="Choose your difficulty and name your space ship"
-          paragraph="We built a familiar title screen that features game loading, difficulty settings, instructions, high scores, and credits."
-          image={menu}
-        />
-        <Slide
-          headline="Juke and gibe through waves of enemy spaceships and lasers"
-          paragraph="Levels are made up of waves of enemy ships and asteroids that spawn a few seconds after you clear the next wave. At the end of every level is a Boss. There are 5 levels and 5 bosses total."
+          carousalRef={zenithCarousalRef}
+          headline="Building with a team"
+          paragraph="One thing I learned while working on Zenith was the importance of playing off the strengths of my team. During level design I initially wanted the levels to progress based off of time, with enemies spawning at regular intervals. However, the game engine and physics of the spaceships that my teammate built ended up working much better when the levels were redesigned as a series of waves culminating in a boss fight."
           image={levels}
-        />
-        <Slide
-          headline="Save your game and jump back in by loading your previous save"
-          paragraph="I learned how to serialize data and extract it again for loading from a save. The use of classes and inheritance from my teammates made my job much simpler."
-          image={saving}
+          icons={[react]}
           switchTextAndImage
         />
-      </Carousel>
+        <Slide
+          carousalRef={zenithCarousalRef}
+          headline="Using inheritance to save"
+          paragraph="My primary responsibility for this project was to build a way for games to save and load. One awesome thing that my teammate and I used to help save time and the game was inheritance. Since saving requires all of the data at that instance to be serialized, having classes inherit a serialize method from their base class made adding features later easy and quick."
+          image={menu}
+          icons={[react]}
+          switchTextAndImage
+        />
+      </Slider>
       <SectionBreak />
     </div>
   );
 }
 
-const Introduction = ({ title, description, link }) => {
+const Slide = ({
+  carousalRef,
+  headline,
+  paragraph,
+  image,
+  switchTextAndImage,
+  icons,
+}) => {
+  console.log(icons);
   return (
     <div
       css={{
-        border: "solid gainsboro 1px",
-        borderTopWidth: 0,
-        borderLeftWidth: 0,
-        borderRightWidth: 0,
-        marginTop: 50,
-        marginBottom: 20,
-      }}
-    >
-      <h2>{title}</h2>
-      <p>{description}</p>
-      <a href={link} css={{ textDecorationColor: "blue" }} target="_blank">
-        <p css={{ color: "blue" }}>See project on GitHub</p>
-      </a>
-    </div>
-  );
-};
-
-const Slide = ({ headline, paragraph, image, switchTextAndImage }) => {
-  return switchTextAndImage ? (
-    <div
-      css={{
         display: "flex",
-        flexDirection: "row",
+        flexDirection: switchTextAndImage ? "row" : "row-reverse",
         "@media (max-width: 500px)": {
           flexDirection: "column",
           alignItems: "center",
         },
       }}
     >
-      <div css={{ flex: 1.5, position: "relative", width: "100%" }}>
+      <div
+        css={{
+          flex: 1.5,
+          position: "relative",
+          width: "100%",
+        }}
+      >
         <Image src={image} objectFit="contain" width={500} height={400} />
       </div>
-      <div css={{ flex: 1, "@media (max-width: 500px)": { marginTop: 20 } }}>
-        <h3>{headline}</h3>
+      <div
+        css={{
+          flex: 1,
+          marginRight: "auto",
+          marginLeft: "auto",
+          "@media (max-width: 500px)": { marginTop: 20 },
+        }}
+      >
+        <div
+          css={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <h3>{headline}</h3>
+          {icons.map((icon) => {
+            return (
+              <div
+                css={{
+                  width: 30,
+                  height: 30,
+                  position: "relative",
+                }}
+              >
+                <Image src={icon} width={30} height={30} objectFit="contain" />
+              </div>
+            );
+          })}
+        </div>
+
         <p>{paragraph}</p>
+        <div css={{ display: "flex", flexDirection: "row" }}>
+          <SlideNavButton direction="left" action={carousalRef} />
+          <SlideNavButton direction="right" action={carousalRef} />
+        </div>
       </div>
     </div>
-  ) : (
+  );
+};
+
+const SlideNavButton = ({ direction, action }) => {
+  return (
     <div
       css={{
-        display: "flex",
-        flexDirection: "row",
-        "@media (max-width: 500px)": {
-          flexDirection: "column-reverse",
-          alignItems: "center",
-        },
+        width: 50,
+        margin: "auto",
+        "@media (max-width: 500px)": { display: "none" },
       }}
     >
-      <div css={{ flex: 1, "@media (max-width: 500px)": { marginTop: 20 } }}>
-        <h3>{headline}</h3>
-        <p>{paragraph}</p>
-      </div>
-      <div css={{ flex: 1.5, position: "relative", width: "100%" }}>
-        <Image src={image} objectFit="contain" width={500} height={400} />
-      </div>
+      <button
+        css={{
+          border: "none",
+          background: "none",
+          color: "#565656",
+          ":hover": {
+            color: "black",
+          },
+        }}
+        onClick={() => {
+          direction === "left"
+            ? action.current.slickPrev()
+            : action.current.slickNext();
+        }}
+      >
+        {direction === "left" ? (
+          <BiChevronLeftCircle size={40} />
+        ) : (
+          <BiChevronRightCircle size={40} />
+        )}
+      </button>
     </div>
   );
 };
@@ -233,44 +256,23 @@ const SectionBreak = () => {
   );
 };
 
-const SlideButton = ({ direction, nextSlide, previousSlide }) => {
-  return direction === "right" ? (
-    <button
+const Introduction = ({ title, description, link }) => {
+  return (
+    <div
       css={{
-        position: "absolute",
-        right: 0,
-        top: "50%",
-        border: "none",
-        transform: "translateX(100%) translateY(-50%)",
-        background: "none",
-        color: "gainsboro",
-        cursor: "pointer",
-        ":hover": {
-          color: "gray",
-        },
+        border: "solid gainsboro 1px",
+        borderTopWidth: 0,
+        borderLeftWidth: 0,
+        borderRightWidth: 0,
+        marginTop: 50,
+        marginBottom: 20,
       }}
-      onClick={nextSlide}
     >
-      <BiChevronRightCircle size={50} />
-    </button>
-  ) : (
-    <button
-      css={{
-        position: "absolute",
-        right: 0,
-        top: "50%",
-        border: "none",
-        transform: "translateX(0%) translateY(-50%)",
-        background: "none",
-        color: "gainsboro",
-        cursor: "pointer",
-        ":hover": {
-          color: "gray",
-        },
-      }}
-      onClick={previousSlide}
-    >
-      <BiChevronLeftCircle size={50} />
-    </button>
+      <h2>{title}</h2>
+      <p>{description}</p>
+      <a href={link} css={{ textDecorationColor: "blue" }} target="_blank">
+        <p css={{ color: "blue" }}>See project on GitHub</p>
+      </a>
+    </div>
   );
 };
