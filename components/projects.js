@@ -36,10 +36,7 @@ import react from "../public/images/tools/reactIcon.png";
 
 export default function Projects() {
   const wideScreen = useMediaQuery({
-    query: "(min-width: 1120px)",
-  });
-  const narrowScreen = useMediaQuery({
-    query: "(max-width: 500px)",
+    query: "(min-width: 500px)",
   });
 
   const outworkCarousalRef = React.useRef();
@@ -60,7 +57,7 @@ export default function Projects() {
         autoplay
         autoplaySpeed={10000}
         pauseOnHover
-        fade={narrowScreen ? false : true}
+        fade={wideScreen ? true : false}
         dots
         ref={outworkCarousalRef}
       >
@@ -111,7 +108,7 @@ export default function Projects() {
         autoplay
         autoplaySpeed={10000}
         pauseOnHover
-        fade={narrowScreen ? false : true}
+        fade={wideScreen ? true : false}
         dots
         ref={zenithCarousalRef}
       >
@@ -145,7 +142,6 @@ const Slide = ({
   switchTextAndImage,
   icons,
 }) => {
-  console.log(icons);
   return (
     <div
       css={{
@@ -177,28 +173,48 @@ const Slide = ({
         <div
           css={{
             display: "flex",
-            flexDirection: "row",
             alignItems: "center",
+            flexDirection: "row",
+            "@media (max-width: 500px)": {
+              flexDirection: "column",
+              alignItems: "center",
+            },
           }}
         >
           <h3>{headline}</h3>
-          {icons.map((icon) => {
-            return (
-              <div
-                css={{
-                  width: 30,
-                  height: 30,
-                  position: "relative",
-                }}
-              >
-                <Image src={icon} width={30} height={30} objectFit="contain" />
-              </div>
-            );
-          })}
+          <div
+            css={{
+              display: "flex",
+              flexDirection: "row",
+            }}
+          >
+            {icons.map((icon, index) => {
+              return (
+                <Image
+                  key={String(index)}
+                  src={icon}
+                  width={30}
+                  height={30}
+                  objectFit="contain"
+                />
+              );
+            })}
+          </div>
         </div>
-
         <p>{paragraph}</p>
-        <div css={{ display: "flex", flexDirection: "row" }}>
+        <div
+          css={{
+            width: "40%",
+            display: "flex",
+            position: "absolute",
+            bottom: 10,
+            flexDirection: "row",
+            justifyContent: "space-around",
+            "@media (max-width: 500px)": {
+              display: "none",
+            },
+          }}
+        >
           <SlideNavButton direction="left" action={carousalRef} />
           <SlideNavButton direction="right" action={carousalRef} />
         </div>
@@ -209,21 +225,11 @@ const Slide = ({
 
 const SlideNavButton = ({ direction, action }) => {
   return (
-    <div
-      css={{
-        width: 50,
-        margin: "auto",
-        "@media (max-width: 500px)": { display: "none" },
-      }}
-    >
+    <div>
       <button
         css={{
           border: "none",
           background: "none",
-          color: "#565656",
-          ":hover": {
-            color: "black",
-          },
         }}
         onClick={() => {
           direction === "left"
@@ -232,9 +238,25 @@ const SlideNavButton = ({ direction, action }) => {
         }}
       >
         {direction === "left" ? (
-          <BiChevronLeftCircle size={40} />
+          <p
+            css={{
+              color: "blue",
+              textDecoration: "underline",
+              fontSize: "1.2rem",
+            }}
+          >
+            Prev
+          </p>
         ) : (
-          <BiChevronRightCircle size={40} />
+          <p
+            css={{
+              color: "blue",
+              textDecoration: "underline",
+              fontSize: "1.2rem",
+            }}
+          >
+            Next
+          </p>
         )}
       </button>
     </div>
@@ -249,7 +271,7 @@ const SectionBreak = () => {
         borderTopWidth: 0,
         borderLeftWidth: 0,
         borderRightWidth: 0,
-        marginTop: 20,
+        marginTop: 50,
         marginBottom: 50,
       }}
     ></div>
@@ -265,10 +287,19 @@ const Introduction = ({ title, description, link }) => {
         borderLeftWidth: 0,
         borderRightWidth: 0,
         marginTop: 50,
-        marginBottom: 20,
+        marginBottom: 50,
       }}
     >
-      <h2>{title}</h2>
+      <div
+        css={{
+          "@media (max-width: 500px)": {
+            display: "flex",
+            justifyContent: "center",
+          },
+        }}
+      >
+        <h2>{title}</h2>
+      </div>
       <p>{description}</p>
       <a href={link} css={{ textDecorationColor: "blue" }} target="_blank">
         <p css={{ color: "blue" }}>See project on GitHub</p>

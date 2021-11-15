@@ -72,7 +72,16 @@ export default function About() {
 const AboutSection = ({ heading, paragraph }) => {
   return (
     <div css={{ marginBottom: 50 }}>
-      <h3>{heading}</h3>
+      <div
+        css={{
+          "@media (max-width: 500px)": {
+            display: "flex",
+            justifyContent: "center",
+          },
+        }}
+      >
+        <h3>{heading}</h3>
+      </div>
       <p>{paragraph}</p>
     </div>
   );
