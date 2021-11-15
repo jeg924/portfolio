@@ -10,29 +10,21 @@ import { useMediaQuery } from "react-responsive";
 
 import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
 
+import algolia from "../public/images/tools/algoliaIcon.png";
+import firebase from "../public/images/tools/firebaseIcon.png";
+import react from "../public/images/tools/reactIcon.png";
+import whimsical from "../public/images/tools/whimsicalIcon.png";
+
 import createWorkout from "../public/images/OutworkSlides/CreateWorkout.png";
 import home from "../public/images/OutworkSlides/Home.png";
 import myWorkouts from "../public/images/OutworkSlides/MyWorkouts.png";
 import browse from "../public/images/OutworkSlides/Browse.png";
 import reviewWorkout from "../public/images/OutworkSlides/ReviewWorkout.png";
 
+import visualStudio from "../public/images/tools/visualstudio.png";
+
 import menu from "../public/images/ZenithSlides/Menu.png";
 import levels from "../public/images/ZenithSlides/Levels.png";
-import saving from "../public/images/ZenithSlides/Saving.png";
-
-import csharp from "../public/images/languages/csharpIcon.png";
-import javascript from "../public/images/languages/javascriptIcon.png";
-import python from "../public/images/languages/pythonIcon.png";
-import html from "../public/images/languages/htmlIcon.png";
-import cpp from "../public/images/languages/CppIcon.png";
-import cssicon from "../public/images/languages/cssIcon.png";
-
-import algolia from "../public/images/tools/algoliaIcon.png";
-import docker from "../public/images/tools/dockerIcon.png";
-import figma from "../public/images/tools/figmaIcon.png";
-import firebase from "../public/images/tools/firebaseIcon.png";
-import github from "../public/images/tools/githubIcon.png";
-import react from "../public/images/tools/reactIcon.png";
 
 export default function Projects() {
   const outworkCarousalRef = React.useRef();
@@ -45,6 +37,7 @@ export default function Projects() {
       </div>
       <Introduction
         title="Outwork"
+        icons={[react, algolia, firebase, whimsical]}
         description="A React Native app to let friends create their own workouts, share their favorite workouts, and compare stats."
         link="https://github.com/jeg924/WorkoutsApp"
       />
@@ -91,6 +84,7 @@ export default function Projects() {
       <SectionBreak />
       <Introduction
         title="Zenith"
+        icons={[visualStudio]}
         description="A retro spaceship game I built in collaboration with three classmates. I worked primarily on the level design and saving mechanism."
         link="https://github.com/CpS-209-Team3/Zenith"
       />
@@ -228,7 +222,7 @@ const SectionBreak = () => {
   );
 };
 
-const Introduction = ({ title, description, link }) => {
+const Introduction = ({ title, icons, description, link }) => {
   return (
     <div
       css={{
@@ -242,13 +236,31 @@ const Introduction = ({ title, description, link }) => {
     >
       <div
         css={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
           "@media (max-width: 500px)": {
-            display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
           },
         }}
       >
         <h2>{title}</h2>
+        <div
+          css={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+        >
+          {icons.map((icon, index) => {
+            return (
+              <Image
+                key={String(index)}
+                src={icon}
+                width={30}
+                height={30}
+                objectFit="contain"
+              />
+            );
+          })}
+        </div>
       </div>
       <p>{description}</p>
       <a href={link} css={{ textDecorationColor: "blue" }} target="_blank">
@@ -256,4 +268,8 @@ const Introduction = ({ title, description, link }) => {
       </a>
     </div>
   );
+};
+
+const ToolsUsed = ({ icons }) => {
+  return <div css={{ border: "solid #565656 1px", borderRadius: 20 }}></div>;
 };
