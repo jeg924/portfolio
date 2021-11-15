@@ -14,6 +14,7 @@ import algolia from "../public/images/tools/algoliaIcon.png";
 import firebase from "../public/images/tools/firebaseIcon.png";
 import react from "../public/images/tools/reactIcon.png";
 import whimsical from "../public/images/tools/whimsicalIcon.png";
+import expo from "../public/images/tools/expoIcon.png";
 
 import createWorkout from "../public/images/OutworkSlides/CreateWorkout.png";
 import home from "../public/images/OutworkSlides/Home.png";
@@ -37,7 +38,7 @@ export default function Projects() {
       </div>
       <Introduction
         title="Outwork"
-        icons={[react, algolia, firebase, whimsical]}
+        icons={[react, algolia, firebase, whimsical, expo]}
         description="A React Native app to let friends create their own workouts, share their favorite workouts, and compare stats."
         link="https://github.com/jeg924/WorkoutsApp"
       />
