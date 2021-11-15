@@ -8,7 +8,7 @@ import Slider from "react-slick";
 import React from "react";
 import { useMediaQuery } from "react-responsive";
 
-import { BiChevronLeftCircle, BiChevronRightCircle } from "react-icons/bi";
+import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
 
 import createWorkout from "../public/images/OutworkSlides/CreateWorkout.png";
 import home from "../public/images/OutworkSlides/Home.png";
@@ -35,10 +35,6 @@ import github from "../public/images/tools/githubIcon.png";
 import react from "../public/images/tools/reactIcon.png";
 
 export default function Projects() {
-  const wideScreen = useMediaQuery({
-    query: "(min-width: 500px)",
-  });
-
   const outworkCarousalRef = React.useRef();
   const zenithCarousalRef = React.useRef();
 
@@ -57,7 +53,7 @@ export default function Projects() {
         autoplay
         autoplaySpeed={10000}
         pauseOnHover
-        fade={wideScreen ? true : false}
+        fade={true}
         dots
         ref={outworkCarousalRef}
       >
@@ -66,35 +62,30 @@ export default function Projects() {
           headline="Making navigation easy"
           paragraph="Apps like Spotify use the home screen as a springboard into the rest of the app. You can jump back into what you were doing, check out new material that you’ll probably like, or browse what’s popular. I built something similar in Outwork. My algorithm builds a list of workouts the user started but didn’t finish, a profile based on the user’s previous workouts which it uses to recommend new workouts, and a list of the most popular workouts on the app."
           image={home}
-          icons={[react, firebase]}
         />
         <Slide
           carousalRef={outworkCarousalRef}
           headline="Making the most of space"
           paragraph="In some places I wanted to give users lots of options but didn’t feel I had the space to do it. Two awesome tools that helped me immensely in this regard were segment controls and action sheets. In the MyWorkouts screen I used a segment control to give users access to the workouts in their history, library, and uploads and an action sheet to manage those workouts."
           image={myWorkouts}
-          icons={[react, firebase]}
         />
         <Slide
           carousalRef={outworkCarousalRef}
           headline="Searching with Aloglia"
           paragraph="I used Algolia for the app’s search engine. Whenever a user or workout is created in the app, a firebase function syncs the firestore database with the Algolia database which allowed me to add custom filters that made searching easy and fast. Algolia requires careful attention to the data structures that are indexed, and I learned how to use the Algolia dashboard as I modified the metadata of my workouts and users so that my app would stay functional."
           image={browse}
-          icons={[react, algolia, firebase]}
         />
         <Slide
           carousalRef={outworkCarousalRef}
           headline="Scrolling for effect"
           image={createWorkout}
           paragraph="When the create-workout flow I wanted a way to show the user what they had built so far and also quickly give them a way to add exercises to a workout. To do this, I decided to automatically scroll down a list of exercises every time the user added a new one and present them the option to add another exercise in the middle of the screen. I used a reference to the flat-list and a function that fired every time an exercise was added to scroll down with animation."
-          icons={[react, firebase]}
         />
         <Slide
           carousalRef={outworkCarousalRef}
           headline="Sharing content between two screens"
           paragraph="One of the challenges I faced early on was sharing content between screens. Because of the way React Stack Navigator stacks screens when navigating back and forth, a screen’s content can’t normally be updated by another screen. To solve this, I passed callbacks with references to state variables to React navigation and used the callback in a modal screen to update the state in the previous screen. Elsewhere in my app I used firebase listeners to automatically refresh a screen once the database had been updated."
           image={reviewWorkout}
-          icons={[react, firebase]}
         />
       </Slider>
       <SectionBreak />
@@ -108,7 +99,7 @@ export default function Projects() {
         autoplay
         autoplaySpeed={10000}
         pauseOnHover
-        fade={wideScreen ? true : false}
+        fade={true}
         dots
         ref={zenithCarousalRef}
       >
@@ -117,7 +108,6 @@ export default function Projects() {
           headline="Building with a team"
           paragraph="One thing I learned while working on Zenith was the importance of playing off the strengths of my team. During level design I initially wanted the levels to progress based off of time, with enemies spawning at regular intervals. However, the game engine and physics of the spaceships that my teammate built ended up working much better when the levels were redesigned as a series of waves culminating in a boss fight."
           image={levels}
-          icons={[react]}
           switchTextAndImage
         />
         <Slide
@@ -125,7 +115,6 @@ export default function Projects() {
           headline="Using inheritance to save"
           paragraph="My primary responsibility for this project was to build a way for games to save and load. One awesome thing that my teammate and I used to help save time and the game was inheritance. Since saving requires all of the data at that instance to be serialized, having classes inherit a serialize method from their base class made adding features later easy and quick."
           image={menu}
-          icons={[react]}
           switchTextAndImage
         />
       </Slider>
@@ -140,7 +129,6 @@ const Slide = ({
   paragraph,
   image,
   switchTextAndImage,
-  icons,
 }) => {
   return (
     <div
@@ -175,49 +163,18 @@ const Slide = ({
             display: "flex",
             alignItems: "center",
             flexDirection: "row",
+            justifyContent: "space-between",
             "@media (max-width: 500px)": {
               flexDirection: "column",
               alignItems: "center",
             },
           }}
         >
-          <h3>{headline}</h3>
-          <div
-            css={{
-              display: "flex",
-              flexDirection: "row",
-            }}
-          >
-            {icons.map((icon, index) => {
-              return (
-                <Image
-                  key={String(index)}
-                  src={icon}
-                  width={30}
-                  height={30}
-                  objectFit="contain"
-                />
-              );
-            })}
-          </div>
-        </div>
-        <p>{paragraph}</p>
-        <div
-          css={{
-            width: "40%",
-            display: "flex",
-            position: "absolute",
-            bottom: 10,
-            flexDirection: "row",
-            justifyContent: "space-around",
-            "@media (max-width: 500px)": {
-              display: "none",
-            },
-          }}
-        >
           <SlideNavButton direction="left" action={carousalRef} />
+          <h3>{headline}</h3>
           <SlideNavButton direction="right" action={carousalRef} />
         </div>
+        <p>{paragraph}</p>
       </div>
     </div>
   );
@@ -225,11 +182,20 @@ const Slide = ({
 
 const SlideNavButton = ({ direction, action }) => {
   return (
-    <div>
+    <div
+      css={{
+        "@media (max-width: 500px)": {
+          display: "none",
+        },
+      }}
+    >
       <button
         css={{
           border: "none",
           background: "none",
+          ":hover": {
+            transform: "scale(1.2, 1.2)",
+          },
         }}
         onClick={() => {
           direction === "left"
@@ -238,25 +204,9 @@ const SlideNavButton = ({ direction, action }) => {
         }}
       >
         {direction === "left" ? (
-          <p
-            css={{
-              color: "blue",
-              textDecoration: "underline",
-              fontSize: "1.2rem",
-            }}
-          >
-            Prev
-          </p>
+          <BsArrowLeftShort size={25} />
         ) : (
-          <p
-            css={{
-              color: "blue",
-              textDecoration: "underline",
-              fontSize: "1.2rem",
-            }}
-          >
-            Next
-          </p>
+          <BsArrowRightShort size={25} />
         )}
       </button>
     </div>
